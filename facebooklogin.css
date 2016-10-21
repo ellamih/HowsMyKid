@@ -1,3 +1,25 @@
+//BUTTON CSS
+
+
+input:focus, input:active, input:hover,
+button:focus, button:active, button:hover {
+  outline: none;
+}
+
+button {
+  cursor:pointer;
+  background-color: #00D0CB;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  padding:10px 10px;
+  margin-left: 10px
+  border-radius: 4px;
+  border:none;  
+
+}
+//RATINGS CSS
 
 .star-rating{
   font-size:0;
@@ -78,10 +100,11 @@ body{
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
   Helvetica, Arial, "Lucida Grande", sans-serif;
   &::before{
+    color: #325050;
+    background: #fff;
     height: 100%;
     content:'';
     width:0;
-    background:red;
     vertical-align: middle;
     display:inline-block;
   }

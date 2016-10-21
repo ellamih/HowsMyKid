@@ -1,4 +1,7 @@
+
 <!doctype html>
+<script src="handlebars-v4.0.5.js"></script>
+<script src="jquery-3.0.0.js"></script>
 
 <html lang="en">
 <head>
@@ -9,6 +12,8 @@
 <link rel="stylesheet" href="facebooklogin.css" type="text/css">
 
 </head>
+
+
 <body>
 
 
@@ -17,13 +22,15 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-<center><div> Track the key daily activities of your child, pet or coaching client!</div>
-<fb:login-button data-size="xlarge" data-show-faces="true" scope="public_profile,email" onlogin="checkLoginState();">
+<center><div> Track the key daily activities of your child
+<div align="right">
+ <a><button type="button" onclick="location.href='todo.html'">To Do List</button></a>
+
+</div>
+</div>
+
+<fb:login-button data-size="large" data-show-faces="true" scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState()";>
 </fb:login-button>
-
-
-<!--Now we're collecting a user's input on the day's activity; this applies to caretakers only 
--->
 
 
 
@@ -34,26 +41,127 @@
 
 <form id="DailyUpdateForm" action="form_action.asp">
   Date <input type= "date" name='date'><br><br>
-  A rating and comments about Henry's breakfast: 
-<!-- 5 star rating stuff from http://rog.ie/blog/css-star-rater specifically from this codepen: http://codepen.io/rogie/pen/jgrIu >-->
 
-<span class="star-rating">
-  <input type="radio" name="rating" value="1"><i></i>
-  <input type="radio" name="rating" value="2"><i></i>
-  <input type="radio" name="rating" value="3"><i></i>
-  <input type="radio" name="rating" value="4"><i></i>
-  <input type="radio" name="rating" value="5"><i></i>
-</span>
-<strong class="choice">Choose a rating</strong>
 
+ <p style="margin-bottom:50px;">
+
+<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
+<link rel="stylesheet" href="stars.css" type="text/css">
+<p>Rate Henry's breakfast:
+<input type="text" name="breakfastRating">
+<fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
 <!--end of 5-star rating code -->
-<input type="text" name="breakfastRating"><br>
-  <br><br>
-  Lunch rating: <input type="text" name="lunchRating"><br><br>
-  Dinner rating: <input type="text" name="dinnerRating"><br><br>
-  General comments: <input type="text" name="generalComments"><br><br>
-  <input type="button" onclick="myFunction()" value="Submit">
+
+</p>
+
+<p style="margin-bottom:50px;">
+  Rate lunch: <input type="text" name="lunchRating">
+<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
+<fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+<!--end of 5-star rating code -->
+</p>
+  
+<p style="margin-bottom:50px;">
+Rate dinner: <input type="text" name="dinnerRating"> 
+<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
+</p>
+<span><fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+</span>
+<!--end of 5-star rating code -->
+</p>
+
+Comments: <input type="text" name="generalComments"><br><br>
+  <a href="/submitted.html"><button type="button" onclick="submitForm()" value=" ">Create Today's Story</button></a>
 </form>
+
+<!--write code to describe what submitForm() does - I'd like for it to submit data to a database :) -->
+
+
+<p style="margin-bottom:300px;">
+
+<div id="daily">
+Your daily story.
+
+</div>
+</p>
+
+
+<script>
+//trying to  create a story based on the input provided
+
+//function dailyStory () {
+//  bfastStory = "Today, Henry ate " + bfastRating + " for breakfast";
+ // $('#daily').HTML(bfastStory);
+
+//  function bfastRating() {
+ // if ($(.star-rating.val()) == 1) {
+  //  bfastRating = "barely anything";
+  //}
+//  } else if ($(.start-rating) == 2) {
+//      bfastRating = "little";
+//  } else if ($(.start-rating) == 3) {
+//    bfastRating = "fine";
+//  } else if ($(.start-rating) == 4) {
+ //     bfastRating = "great";
+ // } else {
+ //   bfastRating = "like a piglet (woohoo!)";            
+ // }
+ // return bfastRating;
+// }
+
+
+
+
+
+//<!--Now we're collecting a user's input on the day's activity; this applies to caretakers only 
+
+//NOTE CURRENTLY WE ARE NOT USING THIS ANYWHERE!
+<script> 
+
+var answers = [];
+var nextPrompt = function() {
+  //if there's no answer in the form
+  if ($('input') != 0){
+    answers.push($('input').val());
+  }
+
+</script>
+
+<!--link to the To Do list -->
+
 
 <script>
 function myFunction() {
@@ -70,7 +178,7 @@ function myFunction() {
 </div>
 
 
-<fb:login-button autologoutlink="true"></fb:login-button>
+ 
 
 <script>
 
@@ -179,10 +287,10 @@ function checkUserRole () {
          this.dailySummary = dailySummary;
       }
 
-      var userInputBFR = ;
-      var userInputLR = ;
-      var userInputDR = ;
-      var userInputDS =  ;
+      var userInputBFR = "";
+      var userInputLR = "";
+      var userInputDR = "";
+      var userInputDS = "";
        
       var todaysUpdate = new dailyUpdate(userInputBFR,userInputLR,userInputDR,userInputDS);
 
@@ -204,6 +312,21 @@ function checkUserRole () {
 
 </script>
 
+<!-- Add a to-do list item -->
+
+<html> 
+  <head> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("todo.html"); 
+    });
+    </script> 
+  </head> 
+
+  <body> 
+     <div id="includedContent"></div>
+  </body> 
+</html>
 
 
 </center>

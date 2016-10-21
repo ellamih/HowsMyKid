@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+<title>Ella's Kid Status App</title>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="todo.css" type="text/css">
+
+<body>
+<input>
+<button> Add todo </button>
+<h3> Todo </h3>
+<ul id="todoList"></ul>
+<h3>Completed</h3>
+<strike><ul id="completedList"></ul></strike>
+
+
+
+<script>
+function addItem() {
+    var newItemText = document.getElementsByTagName('input')[0].value;
+
+    document.getElementsByTagName('input')[0].value = '';
+
+    // Step 1 - Create list item 
+    var newItem = document.createElement('li');
+
+    // add user's todo as content to li 
+    newItem.innerHTML = newItemText;
+
+    // add li node to ul node 
+    document.getElementById('todoList').appendChild(newItem);
+	    newItem.addEventListener('click', completeItem);
+		}
+
+
+function completeItem() {
+ removeItemFromTodos(this);
+  addItemToCompleted(this);	
+    }
+  
+function removeItemFromTodos(itemElement) {
+	document.getElementById('todoList').removeChild(itemElement);
+}
+
+function addItemToCompleted(itemElement) {
+		document.getElementById('completedList').appendChild(itemElement);
+
+}
+
+document.getElementsByTagName('button')[0].addEventListener('click', addItem);
+
+</script>
+
+</body>
+</html>

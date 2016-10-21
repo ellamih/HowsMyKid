@@ -1,0 +1,43 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+<title>Ella's Kid Status App</title>
+<meta charset="utf-8">
+
+<!-- linking in the CSS file -->
+<link rel="stylesheet" href="todo.css" type="text/css">
+
+</head>
+<body>
+<div id="daily">
+Your daily story.
+
+</div>
+<script>
+function dailyStory () {
+ 	bfastStory = "Today Henry ate" + bfastRating + "for breakfast";
+	$('#daily').HTML(bfastStory);
+
+	function bfastRating() {
+
+	 if ($(.start-rating) == 1) {
+			bfastRating = "barely anything";
+	} else if ($(.start-rating) == 2) {
+			bfastRating = "little";
+	} else if ($(.start-rating) == 3) {
+			bfastRating = "fine";
+	} else if ($(.start-rating) == 4) {
+			bfastRating = "great";
+	} else {
+		bfastRating = "like a piglet (woohoo!)";						
+	}
+}
+
+
+
+
+
+</body>
+</html>
