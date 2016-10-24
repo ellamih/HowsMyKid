@@ -160,7 +160,7 @@ body{
   text-align: center;
   &::before{
     color: #325050;
-    background: black;
+    background: #dfdfdf;
     height: 100%;
     content:'';
     width:0;
