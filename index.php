@@ -1,1 +1,1 @@
-<?php header( 'Location: /facebooklogin.html' ) ;  ?>
+<?php header( 'Location: /tellTheStory.html' ) ;  ?>
