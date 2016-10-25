@@ -1,27 +1,26 @@
 
 <!doctype html>
-<script src="js/handlebars-v4.0.5.js"></script>
-<script src="js/jquery-3.0.0.js"></script>
+<html lang="en">
+<head>
+<!--all scripts in HEAD-->
+
+<title>Ella's Kid Status App</title>
 <!-- Firebase CDN -->
 <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-auth.js"></script>
+<script src="js/handlebars-v4.0.5.js"></script>
+<script src="js/jquery-3.0.0.js"></script>
 
 <!-- adding the filestack JS library for uploading photos -->
 <script type="text/javascript"
  src="//api.filestackapi.com/filestack.js"></script>
 
 
-
-
-
-<html lang="en">
-<head>
-<title>Ella's Kid Status App</title>
 <meta charset="utf-8">
 
 <!-- linking in the CSS file -->
-<link rel="stylesheet" href="facebooklogin.css" type="text/css">
+<link rel="stylesheet" href="TellTheStory.css" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
 <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
@@ -44,7 +43,7 @@
 var database = firebase.database();
 console.log('firebase database found and saved in variable');
 
-{
+var rules = {
   "rules": {
     ".read": true,
     ".write": true
