@@ -4,7 +4,7 @@
 <head>
 <!--all scripts in HEAD-->
 
-<title>Ella's Kid Status App</title>
+<title>How's My Kid</title>
 <!-- Firebase CDN -->
 <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
@@ -78,8 +78,8 @@ var rules = {
 <div class="card card-1" style="font-family: 'Merriweather', serif;">
 
 <!-- call to action for the caretakers >-->
-<form id="DailyUpdateForm" action="form_action.asp">
-  Today's date <input type= "date" name='date'><br><br>
+<form id="DailyUpdateForm">
+  Today's date <input type= "date" name='date' id="date"><br><br>
 
   <p>
   <!-- 5-stars -->
@@ -88,7 +88,7 @@ var rules = {
   <p>Rate Henry's breakfast:</p>
 
   <div class="starsDiv">
-    <fieldset class="rating">
+    <fieldset class="rating" id="bfastRating">
         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
         <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
         <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
@@ -102,14 +102,14 @@ var rules = {
     </fieldset>
 <!--end of 5-star rating code -->
   <div class="description">
-    <input type="text" name="breakfastRating" placeholder="Say something...">
+    <input type="text" id="bfastText" placeholder="Say something...">
   </div>
 
 
 
   <p>Rate lunch: </p>
   <div class="starsDiv">
-  <fieldset class="rating">
+  <fieldset class="rating" id="lunchRating">
       <input type="radio" id="bstar5" name="lunchrating" value="5" /><label class = "full" for="bstar5" title="Awesome - 5 stars"></label>
       <input type="radio" id="bstar4half" name="lunchrating" value="4 and a half" /><label class="half" for="bstar4half" title="Pretty good - 4.5 stars"></label>
       <input type="radio" id="bstar4" name="lunchrating" value="4" /><label class = "full" for="bstar4" title="Pretty good - 4 stars"></label>
@@ -123,14 +123,14 @@ var rules = {
   </fieldset>
   <!--end of 5-star rating code -->
     <div class="description">
-  <input type="text" name="lunchrating" placeholder="nom nom...">
+  <input type="text" id="lunchText" placeholder="nom nom...">
   </div>
 
   
 
 <p>Rate dinner: </p>
 <div class="starsDiv">
-<span><fieldset class="rating">
+<span><fieldset class="rating" id=dinnerRating>
     <input type="radio" id="cstar5" name="dinnerrating" value="5" /><label class = "full" for="cstar5" title="Awesome - 5 stars"></label>
     <input type="radio" id="cstar4half" name="dinnerrating" value="4 and a half" /><label class="half" for="cstar4half" title="Pretty good - 4.5 stars"></label>
     <input type="radio" id="cstar4" name="dinnerrating" value="4" /><label class = "full" for="cstar4" title="Pretty good - 4 stars"></label>
@@ -145,11 +145,15 @@ var rules = {
 </span>
 <!--end of 5-star rating code -->
   <div class="description">
-  <input type="text" name="dinnerRating" placeholder="Breakfast for dinner..."> 
+  <input type="text" id="dinnerText" placeholder="Breakfast for dinner..."> 
   </div>
     <p>
         Upload a photo from today! <input type="file" accept="image/*" capture="camera"><br>
         Upload another photo! <input id="myFileInput" type="file" accept="image/*">
+
+
+
+
 <script>
 //upload a photo file using Filestack
 
@@ -170,15 +174,51 @@ filepicker.pick(
   }
 );
 </script>
-    </p>
-  <p>Highlights and milestones:
-    <textarea name="Highlights" rows="3" width=100% placeholder="Leave one for the memorybox"></textarea>
+
+</p>
+<p> Milestone(s):
+    <textarea name="Highlights" rows="2" width=100% placeholder="Leave one for the memorybox"></textarea><br><br>
+    Note(s):
+    <textarea name="Highlights" rows="2" width=100% placeholder="Leave one for the memorybox"></textarea>
     <br><br>
-    <a href="stories.html"><button type="button" onclick="submitForm()" value=" ">Create Today's Story</button></a>
-</form>
-</p></div></div></div></p>
 
+    <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
+  </form>
+</p>
+</div>
+</div>
+</div>
+</p>
 
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  // grab user inputs from the form
+      var date = $('#date').val();
+      var bfastRating = $('#bfastRating').val();
+      var lunchRating = $('#lunchRating').val();
+      var dinnerRating = $('#dinnerRating').val();
+      var bfastText = $('#bfastText').val();
+      var lunchText = $('#lunchText').val();
+      var dinnerText = $('#dinnerText').val();
+  
+  // create a section for comments data in your db
+  var dailyReference = database.ref('daily');
+      // use the set method to save data to the comments
+      dailyReference.push(
+      {
+        date: date,
+        bfastRating: bfastRating,
+        lunchRating: lunchRating,
+        dinnerRating: dinnerRating,
+        bfastText: bfastText,
+        lunchText: lunchText,
+        dinnerText: dinnerText
+      }
+      );
+}
+
+</script>
 
 
 
