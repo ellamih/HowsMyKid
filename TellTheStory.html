@@ -148,10 +148,22 @@ var rules = {
   <input type="text" id="dinnerText" placeholder="Breakfast for dinner..."> 
   </div>
     <p>
-        Upload a photo from today! <input type="file" accept="image/*" capture="camera"><br>
-        Upload another photo! <input id="myFileInput" type="file" accept="image/*">
+        Upload a photo <input id="photoFile" type="file" accept="image/*">
 
 
+
+</p>
+<p> Milestone: <input type='text' id="Milestone" width=100% placeholder="For the memorybox..."><br><br>
+    Note: <input type='text' id="Note" width=100% placeholder="Something brief...">
+    <br><br>
+
+    <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
+  </form>
+</p>
+</div>
+</div>
+</div>
+</p>
 
 
 <script>
@@ -175,21 +187,6 @@ filepicker.pick(
 );
 </script>
 
-</p>
-<p> Milestone(s):
-    <textarea name="Highlights" rows="2" width=100% placeholder="Leave one for the memorybox"></textarea><br><br>
-    Note(s):
-    <textarea name="Highlights" rows="2" width=100% placeholder="Leave one for the memorybox"></textarea>
-    <br><br>
-
-    <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
-  </form>
-</p>
-</div>
-</div>
-</div>
-</p>
-
 <script>
 function submitForm(e) {
   e.preventDefault();
@@ -201,20 +198,26 @@ function submitForm(e) {
       var bfastText = $('#bfastText').val();
       var lunchText = $('#lunchText').val();
       var dinnerText = $('#dinnerText').val();
-  
+      var photoFile = $('#photoFile').val();
+      var Milestone = $('#Milestone').val();
+      var Note = $('#Note').val();
+
   // create a section for comments data in your db
   var dailyReference = database.ref('daily');
       // use the set method to save data to the comments
       dailyReference.push(
-      {
-        date: date,
-        bfastRating: bfastRating,
-        lunchRating: lunchRating,
-        dinnerRating: dinnerRating,
-        bfastText: bfastText,
-        lunchText: lunchText,
-        dinnerText: dinnerText
-      }
+        {
+          date: date,
+          bfastRating: bfastRating,
+          lunchRating: lunchRating,
+          dinnerRating: dinnerRating,
+          bfastText: bfastText,
+          lunchText: lunchText,
+          dinnerText: dinnerText,
+          photoFile: photoFile,
+          Milestone: Milestone,
+          Note: Note
+        }
       );
 }
 
@@ -222,61 +225,7 @@ function submitForm(e) {
 
 
 
-<script>
-//trying to  create a story based on the input provided
-
-//function dailyStory () {
-//  bfastStory = "Today, Henry ate " + bfastRating + " for breakfast";
- // $('#daily').HTML(bfastStory);
-
-//  function bfastRating() {
- // if ($(.star-rating.val()) == 1) {
-  //  bfastRating = "barely anything";
-  //}
-//  } else if ($(.start-rating) == 2) {
-//      bfastRating = "little";
-//  } else if ($(.start-rating) == 3) {
-//    bfastRating = "fine";
-//  } else if ($(.start-rating) == 4) {
- //     bfastRating = "great";
- // } else {
- //   bfastRating = "like a piglet (woohoo!)";            
- // }
- // return bfastRating;
-// }
-
-//<!--Now we're collecting a user's input on the day's activity; this applies to caretakers only 
-//NOTE CURRENTLY WE ARE NOT USING THIS ANYWHERE!
-
-
-
-var answers = [];
-var nextPrompt = function() {
-  //if there's an answer in the form
-  if ($('input') != 0)
-      {
-        answers.push($('input').val());
-      } else {
-        prompt("Please enter something!");
-      }
-    }
-
-</script>
-
 <!--link to the To Do list -->
-
-
-<script>
-function myFunction() {
-    document.getElementById("frm1").submit();
-}
-</script>
-
-
-<!--end of code where we're collecting user's input DO I NEED THIS? HELP -->
-
-<div id="status">
-</div>
 
 
  
