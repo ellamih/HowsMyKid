@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+<title>Ella's Kid Status App</title>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="todo.css" type="text/css">
+
+<body>
+
+<h3>Hello</h3>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<p> paragraph
+</p>
+
+<p> paragraph2
+</p>
+
+<p> paragraph3
+</p>
+<script>
+
+d3.selectAll("p").style("color", function(d, i) {
+  return i % 2 ? "#fff" : "#eee";
+});
+
+// Check for the various File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+  alert('// Great success! All the File APIs are supported.');
+} else {
+  alert('The File APIs are not fully supported in this browser.');
+}
+</script>
