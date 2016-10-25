@@ -69,12 +69,12 @@ console.log('firebase database found and saved in variable');
 <!-- call to action for the caretakers >-->
 <form id="DailyUpdateForm" action="form_action.asp">
   Today's date <input type= "date" name='date'><br><br>
-<p>
-<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
-<link rel="stylesheet" href="stars.css" type="text/css">
 
-<br>
-<p>Rate Henry's breakfast:</p>
+  <p>
+  <!-- 5-stars -->
+  <link rel="stylesheet" href="stars.css" type="text/css"><br>
+
+  <p>Rate Henry's breakfast:</p>
 
   <div class="starsDiv">
     <fieldset class="rating">
@@ -96,54 +96,49 @@ console.log('firebase database found and saved in variable');
 
 
 
-<p>Rate lunch: </p>
-<div class="starsDiv">
-<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
-<fieldset class="rating">
-    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-</fieldset>
-<!--end of 5-star rating code -->
-  <div class="description">
-<input type="text" name="lunchRating" placeholder="nom nom...">
-</div>
+  <p>Rate lunch: </p>
+  <div class="starsDiv">
+  <fieldset class="rating">
+      <input type="radio" id="bstar5" name="lunchrating" value="5" /><label class = "full" for="bstar5" title="Awesome - 5 stars"></label>
+      <input type="radio" id="bstar4half" name="lunchrating" value="4 and a half" /><label class="half" for="bstar4half" title="Pretty good - 4.5 stars"></label>
+      <input type="radio" id="bstar4" name="lunchrating" value="4" /><label class = "full" for="bstar4" title="Pretty good - 4 stars"></label>
+      <input type="radio" id="bstar3half" name="lunchrating" value="3 and a half" /><label class="half" for="bstar3half" title="Meh - 3.5 stars"></label>
+      <input type="radio" id="bstar3" name="lunchrating" value="3" /><label class = "full" for="bstar3" title="Meh - 3 stars"></label>
+      <input type="radio" id="bstar2half" name="lunchrating" value="2 and a half" /><label class="half" for="bstar2half" title="Kinda bad - 2.5 stars"></label>
+      <input type="radio" id="bstar2" name="lunchrating" value="2" /><label class = "full" for="bstar2" title="Kinda bad - 2 stars"></label>
+      <input type="radio" id="bstar1half" name="lunchrating" value="1 and a half" /><label class="half" for="bstar1half" title="Meh - 1.5 stars"></label>
+      <input type="radio" id="bstar1" name="lunchrating" value="1" /><label class = "full" for="bstar1" title="Sucks big time - 1 star"></label>
+      <input type="radio" id="bstarhalf" name="lunchrating" value="half" /><label class="half" for="bstarhalf" title="Sucks big time - 0.5 stars"></label>
+  </fieldset>
+  <!--end of 5-star rating code -->
+    <div class="description">
+  <input type="text" name="lunchrating" placeholder="nom nom...">
+  </div>
 
   
+
 <p>Rate dinner: </p>
 <div class="starsDiv">
-<!-- source of this magical 5-star text is: https://codepen.io/jamesbarnett/pen/vlpkh -->
 <span><fieldset class="rating">
-    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+    <input type="radio" id="cstar5" name="dinnerrating" value="5" /><label class = "full" for="cstar5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="cstar4half" name="dinnerrating" value="4 and a half" /><label class="half" for="cstar4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="cstar4" name="dinnerrating" value="4" /><label class = "full" for="cstar4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="cstar3half" name="dinnerrating" value="3 and a half" /><label class="half" for="cstar3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="cstar3" name="dinnerrating" value="3" /><label class = "full" for="cstar3" title="Meh - 3 stars"></label>
+    <input type="radio" id="cstar2half" name="dinnerrating" value="2 and a half" /><label class="half" for="cstar2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="cstar2" name="dinnerrating" value="2" /><label class = "full" for="cstar2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="cstar1half" name="dinnerrating" value="1 and a half" /><label class="half" for="cstar1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="cstar1" name="dinnerrating" value="1" /><label class = "full" for="cstar1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="cstarhalf" name="dinnerrating" value="half" /><label class="half" for="cstarhalf" title="Sucks big time - 0.5 stars"></label>
 </fieldset>
 </span>
 <!--end of 5-star rating code -->
   <div class="description">
   <input type="text" name="dinnerRating" placeholder="Breakfast for dinner..."> 
-</div>
-
-
-
-<p>
-Highlights and milestones:
-<textarea name="Highlights" rows="3" width=100% placeholder="Leave one for the memorybox"></textarea>
-<br><br>
+  </div><p>
+  Highlights and milestones:
+  <textarea name="Highlights" rows="3" width=100% placeholder="Leave one for the memorybox"></textarea>
+  <br><br>
   <a href="stories.html"><button type="button" onclick="submitForm()" value=" ">Create Today's Story</button></a>
 </form>
 </p></div></div></div></p>
