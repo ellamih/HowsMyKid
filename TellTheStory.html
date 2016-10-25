@@ -7,6 +7,12 @@
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-auth.js"></script>
 
+<!-- adding the filestack JS library for uploading photos -->
+<script type="text/javascript"
+ src="//api.filestackapi.com/filestack.js"></script>
+
+
+
 
 
 <html lang="en">
@@ -138,8 +144,27 @@ console.log('firebase database found and saved in variable');
   </div>
     <p>
         Upload a photo from today! <input type="file" accept="image/*" capture="camera"><br>
-        Upload another photo! <input id="myFileInput" type="file" accept="image/*;capture=camera">
+        Upload another photo! <input id="myFileInput" type="file" accept="image/*">
+<script>
+//upload a photo file using Filestack
 
+filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
+
+filepicker.pick(
+ {
+    mimetype: 'image/*',
+    container: 'window',
+    services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+  },
+  function(Blob){
+    console.log(replaceHtmlChars(JSON.stringify(Blob)));
+  },
+  function(FPError){
+    console.log(FPError.toString()); 
+    //print errors to console
+  }
+);
+</script>
     </p>
   <p>Highlights and milestones:
     <textarea name="Highlights" rows="3" width=100% placeholder="Leave one for the memorybox"></textarea>
