@@ -24,27 +24,6 @@ var rules {
 
 
 
-  // by default a form submit reloads the DOM which will subsequently reload all our JS
-  // to avoid this we preventDefault()
-$('#comment-form').on('submit', function(e) {
-  e.preventDefault();
-
-  // grab user's comment from input field
-  var userInput = $('#comment').val();
-  $('#comment').val('')
-
-  // clear the user's comment from the input (for UX purposes)
-
-  // create a section for comments data in your db
-  var commentsReference = firebase.database.ref('comments');
-
-  // use the set method to save data to the comments
-
-commentsReference.push({
-    comment: userInput,
-    likes: 0
-  });
-});
 
 
 
@@ -65,7 +44,9 @@ function getComments() {
     		likes: allComments[item].likes,
     		commentId: item
     	};
-   	// Get the HTML from our Handlebars comment template
+   	
+
+    // Get the HTML from our Handlebars comment template
       var source = $("#comment-template").html();
       // Compile our Handlebars template
       var template = Handlebars.compile(source);

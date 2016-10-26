@@ -30,23 +30,47 @@
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     </center><p>Daily Story.</p>
     <ul class="comments">
-
     </ul>
     <form id="comment-form" class="cf">
         <input id="comment" type="text" placeholder="Leave a comment">
+
     </form>
   </div>
 
-<!-- Handlebars Template -->
-<script id="comment-template" type="text/x-handlebars-template">
-  
-    <li data-id="{{commentId}}">
-      <span id="likes">Likes: {{likes}}</span>
-      <p>Comment: {{comment}}</p>
-      <i class="fa fa-trash delete">Delete</i>
-      <i class="fa fa-heart-o like">Like</i>
-    </li>
+
+  <script>  //by default a form submit reloads the DOM which will subsequently reload all our JS
+  // to avoid this we preventDefault()
+        $('#comment-form').on('submit', function(event) {
+          event.preventDefault();
+
+          // grab user's comment from input field
+          var userInput = $('#comment').val();
+          
+          // clear the user's comment from the input (for UX purposes)
+          $('#comment').val('')
+
+          // create a section for comments data in your db
+          var commentsReference = firebase.database.ref('comments');
+
+          // use the set method to save data to the comments
+          commentsReference.push({
+              comment: userInput,
+              likes: 0
+          });
+        });
 </script>
+
+
+<!-- Handlebars Template -->
+    <script id="comment-template" type="text/x-handlebars-template">
+        <li data-id="{{commentId}}">
+        <span id="likes">{{likes}}</span>
+        <p>{{comment}}</p>
+        <i class="fa fa-trash delete">Delete</i>
+        <i class="fa fa-heart-o like">Like</i>
+      </li>
+    </script>
+
 
 
 <!-- Firebase CDN -->
