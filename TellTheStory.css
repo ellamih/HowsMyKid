@@ -21,7 +21,7 @@ h2 {
 }
 
 p { 
-padding: 5px;
+padding: 1px;
 
 }
 
@@ -34,32 +34,109 @@ input:hover,
 button:focus, 
 button:active, 
 button:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   outline: none;
 }
 
+/* material design header */
 
 
-/*this is for the material design cards*/
+#page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#toolbar {
+  display: block;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #1BBBFB;
+  padding: 0 16px;
+}
+
+#actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 64px;
+  top: 0;
+  left: 0;
+  right 0;
+}
+
+#actions .icon {
+  padding: 7px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+#actions .spacer {
+  flex: 1;
+}
+
+#actions svg {
+  display: inline-block;
+  pointer-events: none;
+  position: relative;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+#title {
+  padding: 21px;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+}
+
+#content {
+  display: block;
+  position: relative;
+  padding: 24px;
+}
+
+/*material design card*/
 .card-1 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   height: 35%;
   width: 344px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   background: white;
 }
+ 
 
-/*.card-1:hover {
-  box-shadow: 0 6px 10px rgba(0,0,0,0.25), 0 6px 6px rgba(0,0,0,0.22);
+/*source: http://jsfiddle.net/vacidesign/ja0tyj0f */
+.choose_file{
+    position:relative;
+    display:inline-block;    
+    border-radius:8px;
+    border:#ebebeb solid 1px;
+    width:250px; 
+    padding: 4px 6px 4px 8px;
+    font: normal 14px Myriad Pro, Verdana, Geneva, sans-serif;
+    color: #7f7f7f;
+    margin-top: 2px;
+  background:white
 }
-/*end of material design cards*/
-
+.choose_file input[type="file"]{
+    -webkit-appearance:none; 
+    position:absolute;
+    top:0; left:0;
+    opacity:0; 
+}
 
 
 button {
   cursor:pointer;
-  background-color: #00D0CB;
+  background-color: #F55E1C;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -84,7 +161,7 @@ button {
   font-size:0;
   white-space:nowrap;
   display:inline-block;
-  width:250px;
+  width:344px;
   height:50px;
   overflow:hidden;
   position:relative;
@@ -133,9 +210,8 @@ button {
   }
 }
 
-//JUST COSMETIC STUFF FROM HERE ON. THESE AREN'T THE DROIDS YOU ARE LOOKING FOR: MOVE ALONG. 
 
-//just styling for the number
+
 .choice{
   position: fixed;
   top: 0;
@@ -155,12 +231,13 @@ button {
   text-align: center;  
   vertical-align: middle;
 }
+
+
 body{
   font-family: 'merriweather';
   text-align: center;
   &::before{
     color: #325050;
-    background: #dfdfdf;
     height: 100%;
     content:'';
     width:0;
