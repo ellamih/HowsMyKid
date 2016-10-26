@@ -26,7 +26,7 @@ var rules {
 
   // by default a form submit reloads the DOM which will subsequently reload all our JS
   // to avoid this we preventDefault()
-$('#comment-form').on('submit', function (e) {
+$('#comment-form').on('submit', function(e) {
   e.preventDefault();
 
   // grab user's comment from input field
