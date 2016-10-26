@@ -192,9 +192,15 @@ function submitForm(e) {
   e.preventDefault();
   // grab user inputs from the form
       var date = $('#date').val();
+        console.log('date');
       var bfastRating = $('#bfastRating').val();
+        console.log('bfastRating');
       var lunchRating = $('#lunchRating').val();
+        console.log('lunchRating');
+
       var dinnerRating = $('#dinnerRating').val();
+        console.log('dinnerRating');
+
       var bfastText = $('#bfastText').val();
       var lunchText = $('#lunchText').val();
       var dinnerText = $('#dinnerText').val();
@@ -319,50 +325,11 @@ $(':radio').change(
 
         window.response_name = response.name;
    
-   checkUserRole();
  });
 }
-
-function checkUserRole () {
-  //if the user is me, alert out 'Hi Ella'
-
-  if(window.response_name == 'Ella Mihov') {
-     alert("Hi Ella!"); 
-     function dailyUpdate(breakfastRating, lunchRating, dinnerRating, dailySummary) 
-      {
-        this.breakfastRating = breakfastRating;
-        this.lunchRating = lunchRating;
-        this.dinnerRating = dinnerRating;
-         this.dailySummary = dailySummary;
-      }
-
-      var userInputBFR = "";
-      var userInputLR = "";
-      var userInputDR = "";
-      var userInputDS = "";
-       
-      var todaysUpdate = new dailyUpdate(userInputBFR,userInputLR,userInputDR,userInputDS);
-
-  } else if (window.response_name == 'Sonyl Nagale') 
-    {
-     alert("Hi Sonyl!"); 
-    } 
-
-  else if(window.response_name == 'Anguelina Mihova' || 'Olya Lindgren') 
-    {
-    alert("Hi Grandma!"); 
-    } 
-
-  else if(window.response_name == 'Sydney Meyer' || 'Lovisa Persson') 
-    {
-    alert("Hi CareTaker!"); 
-    }
-}
-
 </script>
 
 <!-- Add a to-do list item -->
-
 <html> 
   <head> 
     <script> 

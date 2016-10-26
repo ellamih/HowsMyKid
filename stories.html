@@ -2,12 +2,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Ella's Kid Status App</title>
+	<title>How's My Kid</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="stories.css" type="text/css">
-	 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic' rel='stylesheet' type='text/css'>
+    <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+    <script src="js/jquery-3.0.0.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+    
+    <link rel="stylesheet" href="stories.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   	<link rel="stylesheet" href="stories.css" type='text/css'>
+
+
 
 </head>
 
@@ -33,10 +41,10 @@
 <script id="comment-template" type="text/x-handlebars-template">
   
     <li data-id="{{commentId}}">
-      <span id="likes">{{likes}}</span>
-      <p>{{comment}}</p>
-      <i class="fa fa-trash delete"></i>
-      <i class="fa fa-heart-o like"></i>
+      <span id="likes">Likes: {{likes}}</span>
+      <p>Comment: {{comment}}</p>
+      <i class="fa fa-trash delete">Delete</i>
+      <i class="fa fa-heart-o like">Like</i>
     </li>
 </script>
 

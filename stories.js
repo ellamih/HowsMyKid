@@ -1,5 +1,4 @@
 
-
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAI8h1SgbrccNMTzCdDbz4JBxidnqCLB3E",
@@ -16,12 +15,12 @@ var database = firebase.database();
 
 console.log("Database connected");
 
-//{
-  //"rules": {
-    //".read": true,
-   // ".write": true
-  //}
-//}
+var rules {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
 
 
 
