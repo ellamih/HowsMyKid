@@ -13,7 +13,7 @@
         <script src="js/jquery-3.0.0.js"></script>
 
         <!-- Filestack JS library for uploading photos -->
-        <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
 
     
     <!-- linking in the CSS file -->
@@ -201,9 +201,9 @@ function submitForm(e) {
       var Note = $('#Note').val();
 
   // create a section for comments data in your db
-  var dailyReference = database.ref('daily');
+  var dailyReference = database.ref('users/'+ 'daily');
       // use the set method to save data to the comments
-      dailyReference.push(
+      dailyReference.set(
         {
           date: date,
           bfastRating: bfastRating,
@@ -223,15 +223,6 @@ function submitForm(e) {
 
 
 
-
-<script>
-//this scrolls the header
-$(document).ready(function () {
-  skrollr.init({
-    smoothScrolling: true,
-  });
-});
-</script>
 
  
 
@@ -309,7 +300,7 @@ $(':radio').change(
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "http://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
@@ -323,7 +314,9 @@ $(':radio').change(
         'Thanks for logging in, ' + response.name + '!';
 
         window.response_name = response.name;
-   
+    var name = response.name;
+    return name;
+    console.log(name);
  });
 }
 </script>
