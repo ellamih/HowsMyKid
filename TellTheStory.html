@@ -50,13 +50,6 @@
 var database = firebase.database();
 console.log('firebase database found and saved in variable');
 
-var rules = {
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-
 </script>
 
 
@@ -157,7 +150,7 @@ var rules = {
     Note: <input type='text' id="Note" width=100% placeholder="Something brief...">
     <br><br>
 
-    <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
+    <button type="button" onclick="submitForm()">Create Today's Story</button>
   </form>
 </p>
 </div>
@@ -167,58 +160,64 @@ var rules = {
 
 
 <script>
+
+$('input#photoFile').click(function(e) {
+  uploadImage();
+});
+
 //upload a photo file using Filestack
+function uploadImage() {
+  filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
 
-filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
+  filepicker.pick(
+   {
+      mimetype: 'image/*',
+      container: 'window',
+      services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+    },
+    function(Blob){
+      console.log(replaceHtmlChars(JSON.stringify(Blob)));
+    },
+    function(FPError){
+      console.log(FPError.toString()); 
+      //print errors to console
+    }
+  );
+}
 
-filepicker.pick(
- {
-    mimetype: 'image/*',
-    container: 'window',
-    services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
-  },
-  function(Blob){
-    console.log(replaceHtmlChars(JSON.stringify(Blob)));
-  },
-  function(FPError){
-    console.log(FPError.toString()); 
-    //print errors to console
-  }
-);
 </script>
 
 <script>
-function submitForm(e) {
-  e.preventDefault();
+function submitForm() {
   // grab user inputs from the form
-      var date = $('#date').val();
-      var bfastRating = $('#bfastRating').val();
-      var lunchRating = $('#lunchRating').val();
-      var dinnerRating = $('#dinnerRating').val();
-      var bfastText = $('#bfastText').val();
-      var lunchText = $('#lunchText').val();
-      var dinnerText = $('#dinnerText').val();
-      var photoFile = $('#photoFile').val();
-      var Milestone = $('#Milestone').val();
-      var Note = $('#Note').val();
+  var date = $('#date').val();
+  var bfastRating = $('#bfastRating').val();
+  var lunchRating = $('#lunchRating').val();
+  var dinnerRating = $('#dinnerRating').val();
+  var bfastText = $('#bfastText').val();
+  var lunchText = $('#lunchText').val();
+  var dinnerText = $('#dinnerText').val();
+  var photoFile = $('#photoFile').val();
+  var Milestone = $('#Milestone').val();
+  var Note = $('#Note').val();
 
   // create a section for comments data in your db
   var dailyReference = database.ref('daily');
-      // use the set method to save data to the comments
-      dailyReference.push(
-        {
-          date: date,
-          bfastRating: bfastRating,
-          lunchRating: lunchRating,
-          dinnerRating: dinnerRating,
-          bfastText: bfastText,
-          lunchText: lunchText,
-          dinnerText: dinnerText,
-          photoFile: photoFile,
-          Milestone: Milestone,
-          Note: Note
-        }
-      );
+  // use the set method to save data to the comments
+  dailyReference.push(
+    {
+      date: date,
+      bfastRating: bfastRating,
+      lunchRating: lunchRating,
+      dinnerRating: dinnerRating,
+      bfastText: bfastText,
+      lunchText: lunchText,
+      dinnerText: dinnerText,
+      photoFile: photoFile,
+      Milestone: Milestone,
+      Note: Note
+    }
+  );
 }
 
 </script>
