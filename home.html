@@ -203,7 +203,7 @@ function submitForm(e) {
   // create a section for comments data in your db
   var dailyReference = database.ref('users/'+ 'daily');
       // use the set method to save data to the comments
-      dailyReference.set(
+      dailyReference.push(
         {
           date: date,
           bfastRating: bfastRating,
