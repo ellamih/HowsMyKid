@@ -44,13 +44,6 @@
 var database = firebase.database();
 console.log('firebase database found and saved in variable');
 
-var rules = {
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
-}
-
 </script>
 
 
@@ -180,46 +173,46 @@ filepicker.pick(
 </script>
 
 <script>
-function submitForm(e) {
-  e.preventDefault();
-  // grab user name
-    //???
+function submitForm() {
+  
+  var username = window.response_name;
 
   // grab user inputs from the form
-      var date = $('#date').val();
-        console.log('date');
-      var bfastRating = $('#bfastRating').val();
-        console.log('bfastRating');
-      var lunchRating = $('#lunchRating').val();
-        console.log('lunchRating');
+  var date = $('#date').val();
+    console.log('date');
+  var bfastRating = $('#bfastRating').val();
+    console.log('bfastRating');
+  var lunchRating = $('#lunchRating').val();
+    console.log('lunchRating');
 
-      var dinnerRating = $('#dinnerRating').val();
-        console.log('dinnerRating');
+  var dinnerRating = $('#dinnerRating').val();
+  console.log('dinnerRating');
 
-      var bfastText = $('#bfastText').val();
-      var lunchText = $('#lunchText').val();
-      var dinnerText = $('#dinnerText').val();
-      var dailyPhoto = $('#dailyPhoto').val();
-      var Milestone = $('#Milestone').val();
-      var Note = $('#Note').val();
+  var bfastText = $('#bfastText').val();
+  var lunchText = $('#lunchText').val();
+  var dinnerText = $('#dinnerText').val();
+  var dailyPhoto = $('#dailyPhoto').val();
+  var Milestone = $('#Milestone').val();
+  var Note = $('#Note').val();
 
   // create a section for comments data in your db
   var dailyReference = database.ref('users/'+ 'daily');
-      // use the set method to save data to the comments
-      dailyReference.push(
-        {
-          date: date,
-          bfastRating: bfastRating,
-          lunchRating: lunchRating,
-          dinnerRating: dinnerRating,
-          bfastText: bfastText,
-          lunchText: lunchText,
-          dinnerText: dinnerText,
-          dailyPhoto: dailyPhoto,
-          Milestone: Milestone,
-          Note: Note
-        }
-      );
+  // use the set method to save data to the comments
+  dailyReference.push(
+    {
+      date: date,
+      bfastRating: bfastRating,
+      lunchRating: lunchRating,
+      dinnerRating: dinnerRating,
+      bfastText: bfastText,
+      lunchText: lunchText,
+      dinnerText: dinnerText,
+      dailyPhoto: dailyPhoto,
+      Milestone: Milestone,
+      Note: Note,
+      Name: username
+    }
+  );
 }
 
 </script>
@@ -317,8 +310,6 @@ $(':radio').change(
         'Thanks for logging in, ' + response.name + '!';
 
         window.response_name = response.name;
-    var name = response.name;
-    return name;
     console.log(name);
  });
 }
