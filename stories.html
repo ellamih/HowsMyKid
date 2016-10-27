@@ -29,7 +29,6 @@
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     </center>
-
     <!--Handlebars story template -->
     <p>{{dailyPhoto}}</p>
     <p>{{bfastRating}}</p>
@@ -37,7 +36,18 @@
     <p>{{dinnerRating}}</p>
     <p>{{milestone}}</p>
     <p>{{note}}</p>
-    
+
+
+    <!--Handlebars story template -->
+        <script id="comment-template" type="text/x-handlebars-template">
+              <p>{{dailyPhoto}}</p>
+                  <p>{{bfastRating}}</p>
+                  <p>{{lunchRating}}</p>
+                  <p>{{dinnerRating}}</p>
+                  <p>{{milestone}}</p>
+                  <p>{{note}}</p>
+        </script>    
+
     <ul class="comments">
     </ul>
     <span><form id="comment-form" class="cf">
