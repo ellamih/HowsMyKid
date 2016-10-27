@@ -31,13 +31,14 @@
     </center>
 
     <!--Handlebars story template -->
-    <p>{{dailyPhoto}}</p>
-    <p>{{bfastRating}}</p>
-    <p>{{lunchRating}}</p>
-    <p>{{dinnerRating}}</p>
-    <p>{{milestone}}</p>
-    <p>{{note}}</p>
-    
+        <script id="comment-template" type="text/x-handlebars-template">
+              <p>{{dailyPhoto}}</p>
+                  <p>{{bfastRating}}</p>
+                  <p>{{lunchRating}}</p>
+                  <p>{{dinnerRating}}</p>
+                  <p>{{milestone}}</p>
+                  <p>{{note}}</p>
+        </script>    
     <ul class="comments">
     </ul>
     <span><form id="comment-form" class="cf">
@@ -55,7 +56,6 @@
             // grab user's comment from input field
             var userInput = $('#comment').val();
             
-
             // clear the user's comment from the input (for UX purposes)
             $('#comment').val('')
 
@@ -75,11 +75,11 @@
 
 <!-- Handlebars Template -->
     <script id="comment-template" type="text/x-handlebars-template">
-        <li data-id="{{commentId}}">
-        <span id="likes">{{likes}}</span>
-        <p>{{comment}}</p>
-        <i class="fa fa-trash delete"></i>
-        <i class="fa fa-heart-o like"></i>
+      <li data-id="{{commentId}}">
+          <span id="likes">{{likes}}</span>
+          <p>{{comment}}</p>
+          <i class="fa fa-trash delete"></i>
+          <i class="fa fa-heart-o like"></i>
       </li>
     </script>
 
