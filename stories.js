@@ -79,8 +79,26 @@ $('.comments').on('click', '.like', function (e) {
   commentReference.update({
     likes: likes
   });
+});
+
+
+// function to run when a user clicks on the button with the class ".delete"
+$('.comments').on('click', '.delete', function (e) {
+    // Get the ID from the parent of the Delete button we clicked on
+    var id = $(e.target).parent().data('id');
+    
+    //need to delete the appropriate <li>
+    $(e.target).parent().remove();
+
+    // find comment whose objectId is equal to the id we're searching with
+    var commentReference = database.ref('comments/' + id);
+
+    
+    // Update likes property in database using Firebase's update() method.
+     commentReference.remove();
 
 });
+
 
 
 
