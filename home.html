@@ -12,8 +12,6 @@
         <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
         <script src="js/jquery-3.0.0.js"></script>
 
-        <!-- Filestack JS library for uploading photos -->
-        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
 
     
     <!-- linking in the CSS file -->
@@ -132,7 +130,7 @@ console.log('firebase database found and saved in variable');
     <p>
     <div class="choose_file">
         Choose today's photo
-        <input id=dailyPhoto name="Select File" accept="image/*" type="file" / type="filepicker" data-fp-apikey="AhTgLagciQByzXpFGRI0Az" data-fp-mimetypes="*/*" data-fp-container="modal" click="alert(event.fpfile.url)">
+        <input id=dailyPhoto name="Select File" accept="image/*" type="file">
 
     </div>
     
@@ -152,67 +150,6 @@ console.log('firebase database found and saved in variable');
 
 
 <script>
-//upload a photo file using Filestack
-
-filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
-
-filepicker.pick(
- {
-    mimetype: 'image/*',
-    container: 'window',
-    services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
-  },
-  function(Blob){
-    console.log(replaceHtmlChars(JSON.stringify(Blob)));
-  },
-  function(FPError){
-    console.log(FPError.toString()); 
-    //print errors to console
-  }
-);
-</script>
-
-<script>
-function submitForm() {
-  
-  var username = window.response_name || null;
-
-  // create a section for comments data in your db
-  var dailyReference = database.ref('daily');
-  // use the set method to save data to the comments
-  // grab user inputs from the form
-  dailyReference.push(
-    {
-      date: $('#date').val() || Date(),
-      bfastRating: $('#bfastRating').val() || 0,
-      lunchRating: $('#lunchRating').val() || 0,
-      dinnerRating: $('#dinnerRating').val() || 0,
-      bfastText: $('#bfastText').val()|| 0,
-      lunchText: $('#lunchText').val(),
-      dinnerText: $('#dinnerText').val() || 0,
-      dailyPhoto: $('#dailyPhoto').val() || 0,
-      Milestone: $('#Milestone').val() || 0,
-      Note: $('#note').val()|| 0,
-      Name: username
-    }
-  );
-}
-
-</script>
-
-
-
-
- 
-
-<script>
-//this runs the 5-star rating system
-$(':radio').change(
-  function(){
-    $('.choice').text( this.value + ' stars' );
-  } 
-)
-
 
 // This is called with the results from FB.getLoginStatus().
 // Source of this code is https://developers.facebook.com/docs/facebook-login/web
@@ -270,6 +207,7 @@ $(':radio').change(
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
+
   });
 
   };
@@ -293,9 +231,64 @@ $(':radio').change(
         'Thanks for logging in, ' + response.name + '!';
 
         window.response_name = response.name;
-    console.log(name);
+    console.log("response.name");
  });
 }
+
+
+
+
+
+
+function submitForm() {
+    
+  // grab user inputs from the form
+    var date = $('#date').val();
+    var bfastRating = $('#bfastRating').children('input:checked').val();
+    //console.log(bfastRating);
+    var lunchRating = $('#lunchRating').children('input:checked').val();
+    var dinnerRating = $('#dinnerRating').children('input:checked').val();
+    var bfastText = $('#bfastText').val();
+    var lunchText = $('#lunchText').val();
+    var dinnerText = $('#dinnerText').val();
+    var Milestone = $('#Milestone').val();
+    var Note = $('#Milestone').val();
+
+    var dailyPhoto = $('#dailyPhoto').val();
+
+    var username = window.response_name;
+    //    console.log("username variable created");
+
+    // create a section for comments data in your db
+      var dailyReference = database.ref('daily');
+  
+      dailyReference.push(
+        {
+          date: date,
+          bfastRating: bfastRating,
+          lunchRating: lunchRating,
+          dinnerRating: dinnerRating,
+          bfastText: bfastText,
+          lunchText: lunchText,
+          dinnerText: dinnerText,
+          Milestone: Milestone,
+          Note: Note,
+          dailyPhoto: dailyPhoto,
+          Name: username
+        }
+      );
+}
+
+
+//this runs the 5-star rating system
+//$(':radio').change(
+//  function(){
+//    $('.choice').text( this.value + ' stars' );
+//  } 
+//)
+
+
+
 </script>
 
 
