@@ -180,7 +180,7 @@ function submitForm() {
   // grab user inputs from the form
   var date = $('#date').val();
     console.log('date');
-  var bfastRating = $('#bfastRating').val();
+  var bfastRating = $('#bfastRating').children('input:checked').val();
     console.log('bfastRating');
   var lunchRating = $('#lunchRating').val();
     console.log('lunchRating');
