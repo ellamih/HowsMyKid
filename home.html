@@ -12,7 +12,7 @@
         <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
         <script src="js/jquery-3.0.0.js"></script>
 
-
+       
     
     <!-- linking in the CSS file -->
     <link rel="stylesheet" href="home.css" type="text/css">
@@ -21,7 +21,9 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
 
 </head>
+
 <body>
+
 
 <script>
 // Initialize Firebase
@@ -111,7 +113,7 @@ console.log('firebase database found and saved in variable');
 
     <p>Rate dinner:</p>
     <div class="starsDiv">
-       <fieldset class="rating" id=dinnerRating>
+       <fieldset class="rating" id="dinnerRating">
             <input type="radio" id="cstar5" name="dinnerrating" value="5" /><label class = "full" for="cstar5" title="Awesome - 5 stars"></label>
             <input type="radio" id="cstar4half" name="dinnerrating" value="4.5" /><label class="half" for="cstar4half" title="Pretty good - 4.5 stars"></label>
             <input type="radio" id="cstar4" name="dinnerrating" value="4" /><label class = "full" for="cstar4" title="Pretty good - 4 stars"></label>
@@ -130,7 +132,7 @@ console.log('firebase database found and saved in variable');
     <p>
     <div class="choose_file">
         Choose today's photo
-        <input id=dailyPhoto name="Select File" accept="image/*" type="file">
+        <input id=dailyPhoto name="Select File" accept="image/*" type="file" />
 
     </div>
     
@@ -140,21 +142,77 @@ console.log('firebase database found and saved in variable');
     </div>
     </div>
     <p>
-        <!--<a href="stories.html">-->
-        <button type="button" onclick="submitForm()">Create Today's Story</button>
-        <!--</a>-->
+        <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
     </p>
 
 </form>
 
 
 
+
+
 <script>
+function submitForm() {
+  
+  var username = window.response_name;
+
+  // grab user inputs from the form
+  var date = $('#date').val();
+    console.log('date');
+  var bfastRating = $('#bfastRating').children('input:checked').val();
+    console.log('bfastRating');
+  var lunchRating = $('#lunchRating').val();
+    console.log('lunchRating');
+
+  var dinnerRating = $('#dinnerRating').val();
+  console.log('dinnerRating');
+
+  var bfastText = $('#bfastText').val();
+  var lunchText = $('#lunchText').val();
+  var dinnerText = $('#dinnerText').val();
+  var dailyPhoto = $('#dailyPhoto').val();
+  var Milestone = $('#Milestone').val();
+  var Note = $('#Note').val();
+
+  // create a section for comments data in your db
+  var dailyReference = database.ref('users/'+ 'daily');
+  // use the set method to save data to the comments
+  dailyReference.push(
+    {
+      date: date,
+      bfastRating: bfastRating,
+      lunchRating: lunchRating,
+      dinnerRating: dinnerRating,
+      bfastText: bfastText,
+      lunchText: lunchText,
+      dinnerText: dinnerText,
+      dailyPhoto: dailyPhoto,
+      Milestone: Milestone,
+      Note: Note,
+      Name: username
+    }
+  );
+}
+
+</script>
+
+
+
+
+ 
+
+<script>
+//this runs the 5-star rating system
+$(':radio').change(
+  function(){
+    $('.choice').text( this.value + ' stars' );
+  } 
+)
+
 
 // This is called with the results from FB.getLoginStatus().
 // Source of this code is https://developers.facebook.com/docs/facebook-login/web
   function statusChangeCallback(response) {
-    
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -181,34 +239,52 @@ console.log('firebase database found and saved in variable');
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
-  
   };
 
   window.fbAsyncInit = function() {
- 
-   FB.Event.subscribe('auth.statusChange', statusChangeCallback);
-   FB.init({
+    FB.Event.subscribe('auth.statusChange', statusChangeCallback);
+
+    FB.init({
       appId      : '322512288126012',
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.5' // use graph api version 2.5
+      version    : 'v2.8', // use graph api version 2.5
+      status     : true, 
     });
 
-
-  FB.getLoginStatus(function(response) {
-   if (response.status === 'connected') {
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+   
+    
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        // the user is logged in and has authenticated your
+        // app, and response.authResponse supplies
+        // the user's ID, a valid access token, a signed
+        // request, and the time the access token 
+        // and signed request each expire
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
         window.response_name = response.name;
-        } else if (response.status === 'not_authorized') {
+      } else if (response.status === 'not_authorized') {
         // the user is logged in to Facebook, 
         // but has not authenticated your app
-        } else {
+      } else {
         // the user isn't logged in to Facebook.
-        }
-       });
-    };
+      }
+     });
+  };
+  
 
 
   // Load the SDK asynchronously
@@ -226,14 +302,12 @@ console.log('firebase database found and saved in variable');
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-     // document.getElementById('status').innerHTML =
-     //   'Thanks for logging in, ' + response.name + '!';
+      //document.getElementById('status').innerHTML =
+      //  'Thanks for logging in, ' + response.name + '!';
 
-    window.response_name = response.name;
-    
+      window.response_name = response.name;
     });
-  }
-
+}
 
 
 
@@ -242,52 +316,39 @@ console.log('firebase database found and saved in variable');
 function submitForm() {
     
   // grab user inputs from the form
-    var date = $('#date').val();
-    var bfastRating = $('#bfastRating').children('input:checked').val();
-    //console.log(bfastRating);
-    var lunchRating = $('#lunchRating').children('input:checked').val();
-    var dinnerRating = $('#dinnerRating').children('input:checked').val();
-    var bfastText = $('#bfastText').val();
-    var lunchText = $('#lunchText').val();
-    var dinnerText = $('#dinnerText').val();
-    var Milestone = $('#Milestone').val();
-    var Note = $('#Milestone').val();
+  var date = $('#date').val();
+  var bfastRating = $('#bfastRating').children('input:checked').val() || null;
+  var lunchRating = $('#lunchRating').children('input:checked').val() || null;
+  var dinnerRating = $('#dinnerRating').children('input:checked').val() || null;
+  var bfastText = $('#bfastText').val();
+  var lunchText = $('#lunchText').val();
+  var dinnerText = $('#dinnerText').val();
+  var Milestone = $('#Milestone').val();
+  var Note = $('#Milestone').val();
 
-    var dailyPhoto = $('#dailyPhoto').val();
+  var dailyPhoto = $('#dailyPhoto').val();
 
-    var username = window.response_name;
-    //    console.log("username variable created");
+  var username = window.response_name;
+  //    console.log("username variable created");
 
-    // create a section for comments data in your db
-      var dailyReference = database.ref('daily');
-  
-      dailyReference.push(
-        {
-          date: date,
-          bfastRating: bfastRating,
-          lunchRating: lunchRating,
-          dinnerRating: dinnerRating,
-          bfastText: bfastText,
-          lunchText: lunchText,
-          dinnerText: dinnerText,
-          Milestone: Milestone,
-          Note: Note,
-          dailyPhoto: dailyPhoto,
-          Name: username
-        }
-      );
+  // create a section for comments data in your db
+  var dailyReference = database.ref('daily');
+
+  dailyReference.push(
+  {
+    date: date,
+    bfastRating: bfastRating,
+    lunchRating: lunchRating,
+    dinnerRating: dinnerRating,
+    bfastText: bfastText,
+    lunchText: lunchText,
+    dinnerText: dinnerText,
+    Milestone: Milestone,
+    Note: Note,
+    dailyPhoto: dailyPhoto,
+    Name: username
+  });
 }
-
-
-//this runs the 5-star rating system
-//$(':radio').change(
-//  function(){
-//    $('.choice').text( this.value + ' stars' );
-//  } 
-//)
-
-
-
 </script>
 
 
