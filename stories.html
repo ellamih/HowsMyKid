@@ -23,16 +23,25 @@
 
  <div class="container cf">
     <header class="cf">
-      <h1>Ella</h1>
+      <h1>Today's Story</h1>
       <span id="date"></span>
     </header><center>
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     <img src="https://unsplash.it/200/300/?random" alt="hat">
-    </center><p>Daily Story.</p>
+    </center>
+
+    <!--Handlebars story template -->
+    <p>{{dailyPhoto}}</p>
+    <p>{{bfastRating}}</p>
+    <p>{{lunchRating}}</p>
+    <p>{{dinnerRating}}</p>
+    <p>{{milestone}}</p>
+    <p>{{note}}</p>
+    
     <ul class="comments">
     </ul>
     <span><form id="comment-form" class="cf">
-        <input id="comment" type="text" placeholder="Leave a comment"> <button>Add Comment</button>
+        <input id="comment" type="text" placeholder="Leave a comment" required> <button>Add Comment</button>
     </form>
     </span>
   </div>
@@ -81,7 +90,6 @@
 <script src="js/handlebars-v4.0.5.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
 <script src="js/jquery-3.0.0.js"></script>
-
 
 <!-- Main js file -->
 <script src="stories.js"></script>
