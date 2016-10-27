@@ -144,7 +144,9 @@ console.log('firebase database found and saved in variable');
     </div>
     </div>
     <p>
-        <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
+        <!--<a href="stories.html">-->
+        <button type="button" onclick="submitForm()">Create Today's Story</button>
+        <!--</a>-->
     </p>
 
 </form>
@@ -175,41 +177,24 @@ filepicker.pick(
 <script>
 function submitForm() {
   
-  var username = window.response_name;
-
-  // grab user inputs from the form
-  var date = $('#date').val();
-    console.log('date');
-  var bfastRating = $('#bfastRating').val();
-    console.log('bfastRating');
-  var lunchRating = $('#lunchRating').val();
-    console.log('lunchRating');
-
-  var dinnerRating = $('#dinnerRating').val();
-  console.log('dinnerRating');
-
-  var bfastText = $('#bfastText').val();
-  var lunchText = $('#lunchText').val();
-  var dinnerText = $('#dinnerText').val();
-  var dailyPhoto = $('#dailyPhoto').val();
-  var Milestone = $('#Milestone').val();
-  var Note = $('#Note').val();
+  var username = window.response_name || null;
 
   // create a section for comments data in your db
-  var dailyReference = database.ref('users/'+ 'daily');
+  var dailyReference = database.ref('daily');
   // use the set method to save data to the comments
+  // grab user inputs from the form
   dailyReference.push(
     {
-      date: date,
-      bfastRating: bfastRating,
-      lunchRating: lunchRating,
-      dinnerRating: dinnerRating,
-      bfastText: bfastText,
-      lunchText: lunchText,
-      dinnerText: dinnerText,
-      dailyPhoto: dailyPhoto,
-      Milestone: Milestone,
-      Note: Note,
+      date: $('#date').val() || Date(),
+      bfastRating: $('#bfastRating').val() || 0,
+      lunchRating: $('#lunchRating').val() || 0,
+      dinnerRating: $('#dinnerRating').val() || 0,
+      bfastText: $('#bfastText').val()|| 0,
+      lunchText: $('#lunchText').val(),
+      dinnerText: $('#dinnerText').val() || 0,
+      dailyPhoto: $('#dailyPhoto').val() || 0,
+      Milestone: $('#Milestone').val() || 0,
+      Note: $('#note').val()|| 0,
       Name: username
     }
   );

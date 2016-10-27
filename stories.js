@@ -21,12 +21,12 @@
 // Function that queries our database for comments
 
 function getComments() {
-  // Listen for changes in comments data
+        // Listen for changes in comments data
   database.ref('comments').on('value', function (results) {
     var allComments = results.val();
-          console.log("Get all comments stored in the results we eceived back from Firebase");
+      //console.log("Get all comments stored in the results we eceived back from Firebase");
     var comments = [ ];
-          console.log("set empty array to add comments we'll append to DOM");
+      //console.log("set empty array to add comments we'll append to DOM");
 
     //loop through comments coming from the database call
     for (var item in allComments) {
@@ -41,26 +41,51 @@ function getComments() {
     // Get the HTML from our Handlebars comment template
       var source = $("#comment-template").html();
       var template = Handlebars.compile(source);
-            console.log("Handlebars template compiled");
+            //console.log("Handlebars template compiled");
       var commentListElement = template(context);
-            console.log("Data for this comment (context) was passed to the template");
+            //console.log("Data for this comment (context) was passed to the template");
       comments.push(commentListElement)
-            console.log("newly create element pushed to comments array");
+            //console.log("newly create element pushed to comments array");
 
     }
     $('.comments').empty()
-            console.log("all list items removed from DOM before appending list items");
+            //console.log("all list items removed from DOM before appending list items");
     for (var i in comments) {
       $('.comments').append(comments[i])
-            console.log("each comment append to the list of comments in the DOM");
-
-    }
+            //console.log("each comment append to the list of comments in the DOM");
+      };
     
-  });
-}
+    });
+  };
+
+function loadStory() {
+  var source = $("#story-template").html();
+  //console.log("source of the template is defined")
+  var template = Handlebars.compile(source);
+  //console.log("template is compiled")
+  
+  var context2 = {
+      dailyPhoto: 0,
+      bfastRating: 0,
+      lunchRating: 0,
+      dinnerRating: 0,
+      Milestone: 0,
+      Note: 0,
+      name: window.response_name
+    }
+  var storyElement = template(context2);
+  //console.log("storyElement created");
+  $('.story').html(storyElement);
+  console.log("storyElement appended to .story");
+
+};
+
 // When page loads, call getComments function
     getComments();
       console.log("getComments function is run");
+    
+  loadStory();
+        console.log("loadStory function is run");
 
 // function to run when a user clicks on the button with the class ".like"
 $('.comments').on('click', '.like', function (e) {
@@ -94,7 +119,7 @@ $('.comments').on('click', '.delete', function (e) {
     var commentReference = database.ref('comments/' + id);
 
     
-    // Update likes property in database using Firebase's update() method.
+    // Update likes property in database using Firebase's remove() method. However, this is asynchronouse, so not sure how to make this happen right away. Help :)
      commentReference.remove();
 
 });

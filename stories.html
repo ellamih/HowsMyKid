@@ -25,19 +25,27 @@
     <header class="cf">
       <h1>Today's Story</h1>
       <span id="date"></span>
-    </header><center>
+    </header>
+
+    <!--Handlebars story template; don't know what to do with the dailyStoryID -->
+    <script id="story-template" type="text/x-handlebars-template">
+        <li>
+            Gotta see it to believe it: {{dailyPhoto}}<br>
+            Breakfast: {{bfastRating}}<br>
+            Lunch: {{lunchRating}}<br>
+            Dinner: {{dinnerRating}}<br>
+            Henry's special moment: {{milestone}}<br>
+            And btw: {{note}}<br>
+            <p>submitted by:<br>{{name}}<p>
+        </li>
+    </script>
+    <ul class="story">Today's Story
+    </ul>
+    <center>
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     <img src="https://unsplash.it/200/300/?random" alt="hat">
     </center>
 
-    <!--Handlebars story template -->
-    <p>{{dailyPhoto}}</p>
-    <p>{{bfastRating}}</p>
-    <p>{{lunchRating}}</p>
-    <p>{{dinnerRating}}</p>
-    <p>{{milestone}}</p>
-    <p>{{note}}</p>
-    
     <ul class="comments">
     </ul>
     <span><form id="comment-form" class="cf">
@@ -73,7 +81,7 @@
 </script>
 
 
-<!-- Handlebars Template -->
+<!-- Handlebars Template; -->
     <script id="comment-template" type="text/x-handlebars-template">
         <li data-id="{{commentId}}">
         <span id="likes">{{likes}}</span>
