@@ -142,7 +142,10 @@ console.log('firebase database found and saved in variable');
     </div>
     </div>
     <p>
-        <a href="stories.html"><button type="button" onclick="submitForm()">Create Today's Story</button></a>
+        <!--<a href="stories.html">-->
+        <button id="submitStory" type="button" onclick="submitForm()">Create Today's Story</button>
+
+        <!--</a>-->
     </p>
 
 </form>
@@ -175,7 +178,7 @@ function submitForm() {
   var Note = $('#Note').val();
 
   // create a section for comments data in your db
-  var dailyReference = database.ref('users/'+ 'daily');
+  var dailyReference = database.ref('daily');
   // use the set method to save data to the comments
   dailyReference.push(
     {
@@ -202,12 +205,13 @@ function submitForm() {
  
 
 <script>
-//this runs the 5-star rating system
-$(':radio').change(
-  function(){
-    $('.choice').text( this.value + ' stars' );
-  } 
-)
+
+//WIP
+$('#submitStory').on('click', function(e) {
+  e.preventDefault();
+  //want to create new object card
+});
+  
 
 
 // This is called with the results from FB.getLoginStatus().

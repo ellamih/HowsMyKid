@@ -8,16 +8,19 @@ h1 {
   line-height: 1; 
   text-align: left; 
   margin-top: 0px;
+  background:#CFD8DC;
 }
 
 h2 {
  font-family: Droid+Sans, Verdana;
+ text-align: left;
  font-size: 11px;
  line-height: 14px;
  margin-bottom: 0px;
  text-transform: uppercase;
  letter-spacing: 2px;
  font-weight: bold;
+ background:#CFD8DC;
 }
 
 p { 
@@ -222,7 +225,7 @@ button {
   display:block;
 }
 
-//reset, center n shiz (don't mind this stuff)
+/
 *, ::after, ::before{
   height: 100%;
   padding:0;

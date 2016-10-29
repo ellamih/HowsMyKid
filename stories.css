@@ -32,6 +32,10 @@ header {
   margin: 40px auto;
 }
 
+.container > p {
+	margin: 20px;
+}
+
 img {
 	clear: both;
 	max-width: 100%;
@@ -45,9 +49,7 @@ h1 {
 	margin: 0;
 }
 
-.container > p {
-	margin: 20px;
-}
+
 
 
 header span {

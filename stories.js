@@ -116,10 +116,11 @@ $('.comments').on('click', '.like', function (e) {
     var id = $(e.target).parent().data('id');
     // find comment whose objectId is equal to the id we're searching with
     var commentReference = database.ref('comments/' + id);
+    //  console.log("commentReference is" + commentReference);
 
     // Get number of likes from HTML
     var likes = $('#likes').html();
-
+    // console.log("# of likes is" + likes);
     // Convert likes to a number and add a like
     likes = parseInt(likes, 10) + 1;
 
@@ -135,7 +136,7 @@ $('.comments').on('click', '.delete', function (e) {
     // Get the ID from the parent of the Delete button we clicked on
     var id = $(e.target).parent().data('id');
     
-    //need to delete the appropriate <li>
+    //need to delete the appropriate "li"
     $(e.target).parent().remove();
 
     // find comment whose objectId is equal to the id we're searching with
