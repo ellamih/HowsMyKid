@@ -16,6 +16,51 @@
       console.log("Database connected");
 
 
+//function that queries database for form data
+
+function loadEntry() {
+      database.ref('/daily').on('value', function (results) {
+      var allResults = results.val();
+     // console.log(allResults.child());
+     var dailyEntry = [ ];
+    //loop through comments coming from the database call
+    for (var item in allResults) {
+      //create an object literal with the data we'll pass to Handlebars
+
+      var dailyEntry = {
+        milestone: allResults[item].milestone,
+        note: allResults[item].note,
+        name: allResults[item].Name,
+        dailyEntryId: item,
+        dailyPhoto: allResults[item].dailyphoto,
+        bfastRating: allResults[item].bfastRating,
+        lunchRating: allResults[item].lunchRating,
+        dinnerRating: allResults[item].dinnerRating
+        
+        };
+      console.log("object pulled from Firebase:" + dailyEntry);
+      console.log(dailyEntry);
+      } 
+ 
+
+      var source = $("#story-template").html();
+    //console.log("source of the template is defined")
+    var template = Handlebars.compile(source);
+    //console.log("template is compiled")
+  
+    var storyElement = template(dailyEntry);
+    //console.log("storyElement created");
+    $('.story').html(storyElement);
+
+  });
+
+};
+
+loadEntry();
+console.log("loadData function is run");
+
+
+
 
 
 // Function that queries our database for comments
@@ -30,24 +75,24 @@ function getComments() {
 
     //loop through comments coming from the database call
     for (var item in allComments) {
-    	//create an object literal with the data we'll pass to Handlebars
-    	var context = {
-    		comment: allComments[item].comment,
-    		likes: allComments[item].likes,
-    		commentId: item
-    	};
+      	//create an object literal with the data we'll pass to Handlebars
+      	var context = {
+      		comment: allComments[item].comment,
+      		likes: allComments[item].likes,
+      		commentId: item
+      	};
    	
 
-    // Get the HTML from our Handlebars comment template
-      var source = $("#comment-template").html();
-      var template = Handlebars.compile(source);
-            //console.log("Handlebars template compiled");
-      var commentListElement = template(context);
-            //console.log("Data for this comment (context) was passed to the template");
-      comments.push(commentListElement)
-            //console.log("newly create element pushed to comments array");
+      // Get the HTML from our Handlebars comment template
+        var source = $("#comment-template").html();
+        var template = Handlebars.compile(source);
+              //console.log("Handlebars template compiled");
+        var commentListElement = template(context);
+              //console.log("Data was passed to the template");
+        comments.push(commentListElement)
+              //console.log("newly created element pushed to comments array");
+      }
 
-    }
     $('.comments').empty()
             //console.log("all list items removed from DOM before appending list items");
     for (var i in comments) {
@@ -57,53 +102,31 @@ function getComments() {
     
     });
   };
-
-function loadStory() {
-  var source = $("#story-template").html();
-  //console.log("source of the template is defined")
-  var template = Handlebars.compile(source);
-  //console.log("template is compiled")
   
-  var context2 = {
-      dailyPhoto: 0,
-      bfastRating: 0,
-      lunchRating: 0,
-      dinnerRating: 0,
-      Milestone: 0,
-      Note: 0,
-      name: window.response_name
-    }
-  var storyElement = template(context2);
-  //console.log("storyElement created");
-  $('.story').html(storyElement);
-  console.log("storyElement appended to .story");
 
-};
-
+ 
 // When page loads, call getComments function
-    getComments();
+  getComments();
       console.log("getComments function is run");
     
-  loadStory();
-        console.log("loadStory function is run");
 
 // function to run when a user clicks on the button with the class ".like"
 $('.comments').on('click', '.like', function (e) {
-  // Get the ID from the parent of the like button we clicked on
-  var id = $(e.target).parent().data('id');
-  // find comment whose objectId is equal to the id we're searching with
-  var commentReference = database.ref('comments/' + id);
+    // Get the ID from the parent of the like button we clicked on
+    var id = $(e.target).parent().data('id');
+    // find comment whose objectId is equal to the id we're searching with
+    var commentReference = database.ref('comments/' + id);
 
-  // Get number of likes from HTML
-  var likes = $('#likes').html();
+    // Get number of likes from HTML
+    var likes = $('#likes').html();
 
-  // Convert likes to a number and add a like
-  likes = parseInt(likes, 10) + 1;
+    // Convert likes to a number and add a like
+    likes = parseInt(likes, 10) + 1;
 
-  // Update likes property in database using Firebase's update() method.
-  commentReference.update({
-    likes: likes
-  });
+    // Update likes property in database using Firebase's update() method.
+    commentReference.update({
+      likes: likes
+      });
 });
 
 
@@ -122,8 +145,7 @@ $('.comments').on('click', '.delete', function (e) {
     // Update likes property in database using Firebase's remove() method. However, this is asynchronouse, so not sure how to make this happen right away. Help :)
      commentReference.remove();
 
-});
-
+    });
 
 
 
