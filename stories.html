@@ -28,17 +28,17 @@
       <h1>Today's Story</h1>
       <span id="date"></span>
     </header>
-
-    <!--Handlebars story template; don't know what to do with the dailyStoryID -->
+    <!--Handlebars template -->
     <script id="story-template" type="text/x-handlebars-template">
-        <li>
+        <li>Submitted by: {{name}}<br>
             <img src="{{dailyPhoto}}" /><br>
-            B-fast: {{bfastRating}}<br>
-            Lunch: {{lunchRating}}<br>
-            Din: {{dinnerRating}}<br>
-            Special moment: {{milestone}}<br>
-            Note: {{note}}<br>
-            <p>submitted by: {{name}}<p>
+           <span> b-fast: {{bfastRating}}, lunch: {{lunchRating}}, din: {{dinnerRating}}
+           </span><br>
+           <p style='font-size: 16px'> Special moment: {{milestone}}<br>
+           </p>
+           <span>
+            Note: {{note}}<br><br>
+           </span>
         </li>
     </script>
     <ul class="story">Today's Story

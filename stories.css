@@ -15,9 +15,9 @@
 
 body {
 	background-color: #dfdfdf;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'merriweather', sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 header {
