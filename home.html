@@ -12,7 +12,9 @@
         <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
         <script src="js/jquery-3.0.0.js"></script>
 
-       
+  <!-- Filestack JS library for uploading photos -->
+        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
+
     
     <!-- linking in the CSS file -->
     <link rel="stylesheet" href="home.css" type="text/css">
@@ -45,13 +47,47 @@ console.log('firebase database found and saved in variable');
 </script>
 
 
+
+<script>
+//upload a photo file using Filestack
+function chooseFile() {
+
+  filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
+  filepicker.pick(
+   {
+      mimetype: 'image/*',
+      container: 'window',
+      services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+    },
+  
+   function(Blob){
+    window.image_url = Blob.url;
+
+    console.log(Blob);
+  },
+  
+   function(FPError){
+    console.log(FPError.toString()); 
+    //print errors to console
+  }
+);
+
+};
+
+
+
+</script>
+
+
+
+
 <!--
   Below we include the Login Button social plugin. This button uses
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
 <h2>HOW'S MY KID</h2>
-<h1> Track the activities of your child 
+<h1> Track the activities of your child<span id='greeting'></span>
      <span> <a><button id='todobutton' type="button" onclick="location.href='todo.html'" style="float:right" >To Do List</button></a></span>
 
 </h1>
@@ -131,8 +167,7 @@ console.log('firebase database found and saved in variable');
     </div>
     <p>
     <div class="choose_file">
-        Choose today's photo
-        <input id=dailyPhoto name="Select File" accept="image/*" type="file" />
+        <a onclick="chooseFile()">Choose today's photos and videos</a>
 
     </div>
     
@@ -142,69 +177,21 @@ console.log('firebase database found and saved in variable');
     </div>
     </div>
     <p>
-        <!--<a href="stories.html">-->
+        <a href="stories.html">
         <button id="submitStory" type="button" onclick="submitForm()">Create Today's Story</button>
-
-        <!--</a>-->
+        </a>
     </p>
 
 </form>
 
 
-
-
-
 <script>
-function submitForm() {
-  
-  var username = window.response_name;
 
-  // grab user inputs from the form
-  var date = $('#date').val();
-    console.log('date');
-  var bfastRating = $('#bfastRating').children('input:checked').val();
-    console.log('bfastRating');
-  var lunchRating = $('#lunchRating').val();
-    console.log('lunchRating');
-
-  var dinnerRating = $('#dinnerRating').val();
-  console.log('dinnerRating');
-
-  var bfastText = $('#bfastText').val();
-  var lunchText = $('#lunchText').val();
-  var dinnerText = $('#dinnerText').val();
-  var dailyPhoto = $('#dailyPhoto').val();
-  var Milestone = $('#Milestone').val();
-  var Note = $('#Note').val();
-
-  // create a section for comments data in your db
-  var dailyReference = database.ref('daily');
-  // use the set method to save data to the comments
-  dailyReference.push(
-    {
-      date: date,
-      bfastRating: bfastRating,
-      lunchRating: lunchRating,
-      dinnerRating: dinnerRating,
-      bfastText: bfastText,
-      lunchText: lunchText,
-      dinnerText: dinnerText,
-      dailyPhoto: dailyPhoto,
-      Milestone: Milestone,
-      Note: Note,
-      Name: username
-    }
-  );
+function greeting() {
+  $('#greeting').append(", " + window.response_name + "!");
 }
 
-</script>
 
-
-
-
- 
-
-<script>
 
 //WIP
 $('#submitStory').on('click', function(e) {
@@ -279,7 +266,10 @@ $('#submitStory').on('click', function(e) {
         // and signed request each expire
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
-        window.response_name = response.name;
+        //console.log(response);
+        //console.log(response.name);
+  
+
       } else if (response.status === 'not_authorized') {
         // the user is logged in to Facebook, 
         // but has not authenticated your app
@@ -310,6 +300,10 @@ $('#submitStory').on('click', function(e) {
       //  'Thanks for logging in, ' + response.name + '!';
 
       window.response_name = response.name;
+      
+       //invoke greeting
+        greeting();
+
     });
 }
 
@@ -330,13 +324,15 @@ function submitForm() {
   var Milestone = $('#Milestone').val();
   var Note = $('#Milestone').val();
 
-  var dailyPhoto = $('#dailyPhoto').val();
 
   var username = window.response_name;
   //    console.log("username variable created");
 
   // create a section for comments data in your db
   var dailyReference = database.ref('daily');
+
+    var dailyPhoto = window.image_url || null;
+
 
   dailyReference.push(
   {

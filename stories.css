@@ -42,13 +42,15 @@ img {
 }
 
 h1 {
-	float: left;
-	line-height: 32px;
-	font-size: 16px;
-	font-weight: 400;
-	margin: 0;
+	
+color: #111; 
+  font-family: 'merriweather', sans-serif; 
+  font-weight: bold; 
+  letter-spacing: -1px; 
+  line-height: 1; 
+  text-align: left; 
+  margin-top: 0px;
 }
-
 
 
 

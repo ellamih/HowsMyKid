@@ -20,6 +20,7 @@
 
 function loadEntry() {
       database.ref('/daily').on('value', function (results) {
+
       var allResults = results.val();
      // console.log(allResults.child());
      var dailyEntry = [ ];
@@ -31,16 +32,17 @@ function loadEntry() {
         milestone: allResults[item].milestone,
         note: allResults[item].note,
         name: allResults[item].Name,
-        dailyEntryId: item,
-        dailyPhoto: allResults[item].dailyphoto,
+        dailyPhoto: allResults[item].dailyPhoto,
         bfastRating: allResults[item].bfastRating,
         lunchRating: allResults[item].lunchRating,
-        dinnerRating: allResults[item].dinnerRating
-        
+        dinnerRating: allResults[item].dinnerRating,
+        dailyEntryId: item
         };
+      
       console.log("object pulled from Firebase:" + dailyEntry);
       console.log(dailyEntry);
-      } 
+      console.log(dailyEntry.dailyPhoto);
+     } 
  
 
       var source = $("#story-template").html();
