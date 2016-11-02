@@ -39,9 +39,6 @@ function loadEntry() {
         dailyEntryId: item
         };
       
-      console.log("object pulled from Firebase:" + dailyEntry);
-      console.log(dailyEntry);
-      console.log(dailyEntry.dailyPhoto);
      } 
  
 
@@ -60,7 +57,6 @@ function loadEntry() {
 
 loadEntry();
 console.log("loadData function is run");
-
 
 
 
@@ -110,7 +106,33 @@ function getComments() {
 // When page loads, call getComments function
   getComments();
       console.log("getComments function is run");
+
+
+/*
+//  Function to run when a user clicks on the button with the class ".photoLike"
+$('.dailyData').on('click', '.photoLikes', function (e) {
+    // Get the ID from the parent of the like button we clicked on
+    var id = $(e.target).parent().data('id');
+    // find comment whose objectId is equal to the id we're searching with
+    var photoLikesReference = database.ref('photoLikes/' + id);
+    //  console.log("commentReference is" + commentReference);
+
+    // Get number of likes from HTML
+    var photoLikes = $('#photoLikes').html();
+    // console.log("# of likes is" + likes);
+    // Convert likes to a number and add a like
+    photoLikes = parseInt(photoLikes, 10) + 1;
+
+    // Update likes property in database using Firebase's update() method.
+    photoLikesReference.push({
+      photoLikes: photoLikes
+      });
+});
+*/
     
+
+
+
 
 // function to run when a user clicks on the button with the class ".like"
 $('.comments').on('click', '.like', function (e) {

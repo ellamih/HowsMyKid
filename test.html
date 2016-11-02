@@ -1,0 +1,55 @@
+
+
+<!--
+(i) I want to create new .container div class (<div class="container cf") when a new data is pushed to Firebase
+(ii) I want to fill each container with the appropriate data using a handlebars template 
+-->
+
+
+<script>
+
+//First scan the database for new data
+database.ref('/daily').on('value', function (results) {
+//then access the values of the results 
+
+     var allResults = results.val();
+     var dailyEntry = [ ];
+     var stories = {};
+
+ //loop through results from the database call
+    for (var item in allResults) {
+ 
+//create an object literal that collects the data items, which each will create a new Handlebars card
+
+      var stories += item;
+
+//create an object literal with individual data we'll pass to Handlebars
+
+      var dailyEntry = {
+        milestone: allResults[item].milestone,
+        note: allResults[item].note,
+        name: allResults[item].Name,
+        dailyPhoto: allResults[item].dailyPhoto,
+        bfastRating: allResults[item].bfastRating,
+        lunchRating: allResults[item].lunchRating,
+        dinnerRating: allResults[item].dinnerRating,
+        dailyEntryId: item
+        };
+      
+     }
+
+//add dailyEntry to this card, while adding others to other cards, forming a history
+	this.parent().append(".container")
+
+});
+
+ </script>
+
+<script id="story-template" type="text/x-handlebars-template">
+
+<ul class="storyList">
+  {{#each story}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+</script>
