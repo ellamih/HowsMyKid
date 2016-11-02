@@ -19,11 +19,12 @@
 //function that queries database for form data
 
 function loadEntry() {
-      database.ref('/daily').on('value', function (results) {
+  database.ref('/daily').on('value', function (results) {
 
-      var allResults = results.val();
-     // console.log(allResults.child());
-     var dailyEntry = [ ];
+    var allResults = results.val();
+    console.log(allResults);
+    //console.log(allResults.child());
+    var dailyEntry = [ ];
     //loop through comments coming from the database call
     for (var item in allResults) {
       //create an object literal with the data we'll pass to Handlebars
@@ -37,26 +38,22 @@ function loadEntry() {
         lunchRating: allResults[item].lunchRating,
         dinnerRating: allResults[item].dinnerRating,
         dailyEntryId: item
-        };
-      
-     } 
- 
-
+      };
+      console.log(dailyEntry);
       var source = $("#story-template").html();
-    //console.log("source of the template is defined")
-    var template = Handlebars.compile(source);
-    //console.log("template is compiled")
-  
-    var storyElement = template(dailyEntry);
+      var template = Handlebars.compile(source);
+      var storyElement = template(dailyEntry);
+      $('.story').prepend(storyElement);
+    } 
     //console.log("storyElement created");
-    $('.story').html(storyElement);
+    
 
   });
 
 };
 
 loadEntry();
-console.log("loadData function is run");
+console.log("loadData function is run!");
 
 
 
