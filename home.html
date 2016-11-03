@@ -177,7 +177,8 @@ function chooseFile() {
     </div>
     </div>
     <p>
-        <a href="stories.html"><button id="submitStory" type="button" onclick="submitForm()">Create Today's Story</button></a><br>
+        <!--a href="stories.html"-->
+        <button id="submitStory" type="button" onclick="submitForm()">Create Today's Story</button><!--/a--><br>
     </p>
 
 </form>
@@ -341,7 +342,10 @@ function submitForm() {
     dailyPhoto: dailyPhoto,
     Name: username
   });
+window.location = "stories.html";
+
 }
+
 </script>
 
 
