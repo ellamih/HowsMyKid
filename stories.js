@@ -22,7 +22,7 @@ function loadEntry() {
   database.ref('/daily').on('value', function (results) {
 
     var allResults = results.val();
-    console.log(allResults);
+    //console.log(allResults);
     //console.log(allResults.child());
     var dailyEntry = [ ];
     //loop through comments coming from the database call
@@ -30,8 +30,9 @@ function loadEntry() {
       //create an object literal with the data we'll pass to Handlebars
 
       var dailyEntry = {
-        milestone: allResults[item].milestone,
-        note: allResults[item].note,
+        date: allResults[item].date,
+        Milestone: allResults[item].Milestone,
+        Note: allResults[item].Note,
         name: allResults[item].Name,
         dailyPhoto: allResults[item].dailyPhoto,
         bfastRating: allResults[item].bfastRating,
@@ -39,6 +40,7 @@ function loadEntry() {
         dinnerRating: allResults[item].dinnerRating,
         dailyEntryId: item
       };
+
       console.log(dailyEntry);
       var source = $("#story-template").html();
       var template = Handlebars.compile(source);
@@ -58,9 +60,13 @@ console.log("loadData function is run!");
 
 
 
+
+
+
+
 // Function that queries our database for comments
 
-function getComments() {
+/*function getComments() {
         // Listen for changes in comments data
   database.ref('comments').on('value', function (results) {
     var allComments = results.val();
@@ -98,11 +104,8 @@ function getComments() {
     });
   };
   
-
+*/
  
-// When page loads, call getComments function
-  getComments();
-      console.log("getComments function is run");
 
 
 /*
@@ -132,7 +135,7 @@ $('.dailyData').on('click', '.photoLikes', function (e) {
 
 
 // function to run when a user clicks on the button with the class ".like"
-$('.comments').on('click', '.like', function (e) {
+/*$('.comments').on('click', '.like', function (e) {
     // Get the ID from the parent of the like button we clicked on
     var id = $(e.target).parent().data('id');
     // find comment whose objectId is equal to the id we're searching with
@@ -169,6 +172,6 @@ $('.comments').on('click', '.delete', function (e) {
 
     });
 
-
+*/
 
 

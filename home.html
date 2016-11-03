@@ -97,11 +97,9 @@ function chooseFile() {
 <center >
 <div class="card card-1" style="font-family: 'Merriweather', serif;">
     <form id="DailyUpdateForm">
-      Date <input type= "date" id="date">
-      
+      Create a daily update for Henry
       <link rel="stylesheet" href="stars.css" type="text/css"><br>
-
-      <p>Rate Henry's breakfast:</p>
+      <p>Rate breakfast:</p>
 
       <div class="starsDiv">
         <fieldset class="rating" id="bfastRating">
@@ -301,14 +299,11 @@ function greeting() {
     });
 }
 
-
-
-
-
 function submitForm() {
     
   // grab user inputs from the form
-  var date = $('#date').val();
+  var date = new Date().toString();
+  console.log(date);
   var bfastRating = $('#bfastRating').children('input:checked').val() || null;
   var lunchRating = $('#lunchRating').children('input:checked').val() || null;
   var dinnerRating = $('#dinnerRating').children('input:checked').val() || null;
@@ -316,7 +311,7 @@ function submitForm() {
   var lunchText = $('#lunchText').val();
   var dinnerText = $('#dinnerText').val();
   var Milestone = $('#Milestone').val();
-  var Note = $('#Milestone').val();
+  var Note = $('#Note').val();
 
 
   var username = window.response_name;
@@ -325,10 +320,9 @@ function submitForm() {
   // create a section for comments data in your db
   var dailyReference = database.ref('daily');
 
-    var dailyPhoto = window.image_url || null;
+  var dailyPhoto = window.image_url || null;
 
-
-  dailyReference.push(
+  var daily = 
   {
     date: date,
     bfastRating: bfastRating,
@@ -341,8 +335,10 @@ function submitForm() {
     Note: Note,
     dailyPhoto: dailyPhoto,
     Name: username
-  });
-window.location = "stories.html";
+  };
+
+  dailyReference.push(daily);
+  window.location = "stories.html";
 
 }
 
