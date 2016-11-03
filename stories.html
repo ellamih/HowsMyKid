@@ -8,8 +8,8 @@
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
     <script src="js/jquery-3.0.0.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
-    
+    <script src="js/handlebars-v4.0.5.js"></script> 
+
     <link rel="stylesheet" href="stories.css" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
 
@@ -20,28 +20,6 @@
 
 
 <body>
-
-<!--Facebook comments code -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=322512288126012";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<!--Facebook like (& share) button code -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=322512288126012";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
  <div class="container cf">
     <header class="cf">
       <h1>Today's Story</h1>
@@ -61,7 +39,7 @@
             <div class="fb-comments" data-width="450" data-href="http://howsmykid.com/#{{date}}" data-numposts="5"></div>
             
             <div class="fb-like" data-href="http://howsmykid.com/#{{date}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-
+            
         </li>
     </script>
     </form>
@@ -70,19 +48,35 @@
 
 
 
-
-
-
-
-<!-- Firebase CDN -->
- 
-<script src="js/handlebars-v4.0.5.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
-<script src="js/jquery-3.0.0.js"></script>
-
 <!-- Main js file -->
 <script src="stories.js"></script>
 
+
+<!--Facebook comments code -->
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=322512288126012";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+console.log("Facebook comments code is run");
+</script>
+
+<!--Facebook like (& share) button code -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=322512288126012";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+console.log("Facebook 'like button' code is run!");
+</script>
 </body>
 
 </html>
