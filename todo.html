@@ -6,9 +6,40 @@
 <title>How's My Kid</title>
 <meta charset="utf-8">
 
-<link rel="stylesheet" href="todo.css" type="text/css">
+<!-- Firebase CDN -->
+        <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+        <script src="js/jquery-3.0.0.js"></script>
+
+  <!-- Filestack JS library for uploading photos -->
+        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
+
+        <link rel="stylesheet" href="todo.css" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
+</head>
 
 <body>
+
+<script>
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAI8h1SgbrccNMTzCdDbz4JBxidnqCLB3E",
+    authDomain: "hows-my-kid.firebaseapp.com",
+    databaseURL: "https://hows-my-kid.firebaseio.com",
+    storageBucket: "hows-my-kid.appspot.com",
+    messagingSenderId: "694614334571"
+  };
+  firebase.initializeApp(config);
+
+//Connect to my Firebase application using reference URL
+var database = firebase.database();
+console.log('firebase database found and saved in variable');
+</script>
+
+
 
 <h3><label for="new-task">Add Item</label></h3>
 <form id="toDoForm">
