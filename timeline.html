@@ -23,7 +23,9 @@
 
 <div class="container">
     <div class="page-header">
-        <h1 id="timeline">Timeline</h1>
+        <!--script id="name-template" type="text/x-handlebars-template"-->
+        <h1 id="timeline">Milestone timeline </h1>
+       <!--/script-->
     </div>
     <ul class="timeline">
         <script id="milestone-template" type="text/x-handlebars-template">
@@ -36,7 +38,7 @@
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{date}}</small></p>
             </div>
             <div class="timeline-body">
-              <p><img src="{{dailyPhoto}}" alt="{{Milestone}}" height="100" width="200"></p>
+              <p><img id="photo" src="{{dailyPhoto}}" alt="{{Milestone}}" width="50%" height="50%"></p>
             </div>
           </div>
         </li>

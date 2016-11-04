@@ -15,17 +15,39 @@
       console.log("Database connected");
 
 
+//function that queries database for child's data
+
+/*function loadChild() {
+  database.ref('/children').on('value', function (results) {
+
+    var allResults = results.val();
+
+    for (var item in allResults) {
+
+      var childData = {
+        birthday: allResults[item].birthday,
+        firstName: allResults[item].firstName,
+        lastName: allResults[item].lastName
+      }
+    }      
+      var source = $("#name-template").html();
+      var template = Handlebars.compile(source);
+      $('#timeline').prepend(template(childData));
+    }); 
+
+    }
+
+loadChild();
+console.log("loadChild function is run!");
+*/
+
 //function that queries database for form data
-
-
 function loadMilestones() {
   database.ref('/daily').on('value', function (results) {
 
     var allResults = results.val();
-    //console.log(allResults);
-    //console.log(allResults.child());
-    var dailyEntry = [ ];
-    //loop through comments coming from the database call
+
+    //loop through the data coming from the database call
     for (var item in allResults) {
       //create an object literal with the data we'll pass to Handlebars
 
@@ -35,13 +57,11 @@ function loadMilestones() {
         dailyPhoto: allResults[item].dailyPhoto,
       };
 
-      console.log(dailyEntry);
       var source = $("#milestone-template").html();
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
       $('.timeline').prepend(storyElement);
     } 
-    //console.log("storyElement created");
     
 });
 
