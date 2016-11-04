@@ -39,7 +39,7 @@ function loadEntry() {
         lunchRating: allResults[item].lunchRating,
         dinnerRating: allResults[item].dinnerRating,
         dailyEntryId: item,
-        type: allResults[item].type
+        type: (allResults[item].type == "video/mp4") ? true : false
       };
 
  

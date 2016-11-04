@@ -8,7 +8,7 @@ h1 {
   line-height: 1; 
   text-align: left; 
   margin-top: 0px;
-  background:#CFD8DC;
+  
 }
 
 h2 {
@@ -20,7 +20,6 @@ h2 {
  text-transform: uppercase;
  letter-spacing: 2px;
  font-weight: bold;
- background:#CFD8DC;
 }
 
 p { 
@@ -116,6 +115,24 @@ button:hover {
 }
  
 
+
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 100%;
+  min-height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
 /*source: http://jsfiddle.net/vacidesign/ja0tyj0f */
 .choose_file{
     position:relative;
@@ -139,7 +156,7 @@ button:hover {
 
 button {
   cursor:pointer;
-  background-color: #F55E1C;
+  background-color: #4CAF50;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -239,6 +256,8 @@ button {
 body{
   font-family: 'merriweather';
   text-align: center;
+  background: #e9f0f5;
+
   &::before{
     color: #325050;
     height: 100%;

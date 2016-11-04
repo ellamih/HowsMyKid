@@ -1,7 +1,7 @@
 
 button {
   cursor:pointer;
-  background-color: #F55E1C;
+  background-color: #4CAF50;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -31,7 +31,7 @@ button {
 
 
 body {
-	background-color: #dfdfdf;
+	background-color: #e9f0f5;
 	font-family: 'merriweather', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-size: 12px;

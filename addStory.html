@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--all scripts in HEAD-->
+    <meta charset="utf-8">
+
+    <title>How's My Kid</title>
+    <!-- Firebase CDN -->
+        <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+        <script src="js/jquery-3.0.0.js"></script>
+
+  <!-- Filestack JS library for uploading photos -->
+        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
+
+    
+    <!-- linking in the CSS file -->
+    <link rel="stylesheet" href="home.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
+
+</head>
+
+<body>
+    
+
+
+<script>
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAI8h1SgbrccNMTzCdDbz4JBxidnqCLB3E",
+    authDomain: "hows-my-kid.firebaseapp.com",
+    databaseURL: "https://hows-my-kid.firebaseio.com",
+    storageBucket: "hows-my-kid.appspot.com",
+    messagingSenderId: "694614334571"
+  };
+  firebase.initializeApp(config);
+
+//Connect to my Firebase application using reference URL
+var database = firebase.database();
+console.log('firebase database found and saved in variable');
+</script>
+
+
+<script>
+//upload a photo file using Filestack
+function chooseFile() {
+  filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
+  filepicker.pick(
+   {
+      mimetype: '*/*',
+      container: 'window',
+      services: ['COMPUTER', 'FACEBOOK', 'CLOUDAPP']
+    },
+  
+   function(Blob){
+    window.image_url = Blob.url;
+    window.uploadType = Blob.mimetype;
+    console.log(Blob);
+  },
+  
+   function(FPError){
+    console.log(FPError.toString()); 
+    //print errors to console
+  }
+);
+};
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+<h2>HOW'S MY KID</h2>
+<h1> Track the activities of your child<span id='greeting'></span>
+    <span> <a><button id='todobutton' type="button" onclick="location.href='todo.html'" style="float:right" >To Do List</button></a></span>
+    <span> <a><button id='timelineButton' type="button" onclick="location.href='timeline.html'" style="float:right" >Timeline</button></a></span>
+
+</h1>
+
+<center >
+<div class="card card-1" style="font-family: 'Merriweather', serif;">
+    <form id="DailyUpdateForm">
+      Create a daily update for Henry
+      <link rel="stylesheet" href="stars.css" type="text/css"><br>
+      <p>Rate breakfast:</p>
+
+      <div class="starsDiv">
+        <fieldset class="rating" id="bfastRating">
+            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+            <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+            <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+            <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+            <input type="radio" id="starhalf" name="rating" value=".5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+        </fieldset>
+    </div>
+    
+    <div class="description">
+          <input type="text" id="bfastText" placeholder="Say something..."> 
+    </div>
+    
+
+
+      <p>Rate lunch: </p>
+      <div class="starsDiv">
+        <fieldset class="rating" id="lunchRating">
+            <input type="radio" id="bstar5" name="lunchrating" value="5" /><label class = "full" for="bstar5" title="Awesome - 5 stars"></label>
+            <input type="radio" id="bstar4half" name="lunchrating" value="4.5" /><label class="half" for="bstar4half" title="Pretty good - 4.5 stars"></label>
+            <input type="radio" id="bstar4" name="lunchrating" value="4" /><label class = "full" for="bstar4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="bstar3half" name="lunchrating" value="3.5" /><label class="half" for="bstar3half" title="Meh - 3.5 stars"></label>
+            <input type="radio" id="bstar3" name="lunchrating" value="3" /><label class = "full" for="bstar3" title="Meh - 3 stars"></label>
+            <input type="radio" id="bstar2half" name="lunchrating" value="2.5" /><label class="half" for="bstar2half" title="Kinda bad - 2.5 stars"></label>
+            <input type="radio" id="bstar2" name="lunchrating" value="2" /><label class = "full" for="bstar2" title="Kinda bad - 2 stars"></label>
+            <input type="radio" id="bstar1half" name="lunchrating" value="1.5" /><label class="half" for="bstar1half" title="Meh - 1.5 stars"></label>
+            <input type="radio" id="bstar1" name="lunchrating" value="1" /><label class = "full" for="bstar1" title="Sucks big time - 1 star"></label>
+            <input type="radio" id="bstarhalf" name="lunchrating" value=".5" /><label class="half" for="bstarhalf" title="Sucks big time - 0.5 stars"></label>
+        </fieldset>
+        </div>
+
+        <div class="description">
+            <input type="text" id="lunchText" placeholder="nom nom...">
+        </div>
+
+
+      
+
+    <p>Rate dinner:</p>
+    <div class="starsDiv">
+       <fieldset class="rating" id="dinnerRating">
+            <input type="radio" id="cstar5" name="dinnerrating" value="5" /><label class = "full" for="cstar5" title="Awesome - 5 stars"></label>
+            <input type="radio" id="cstar4half" name="dinnerrating" value="4.5" /><label class="half" for="cstar4half" title="Pretty good - 4.5 stars"></label>
+            <input type="radio" id="cstar4" name="dinnerrating" value="4" /><label class = "full" for="cstar4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="cstar3half" name="dinnerrating" value="3.5" /><label class="half" for="cstar3half" title="Meh - 3.5 stars"></label>
+            <input type="radio" id="cstar3" name="dinnerrating" value="3" /><label class = "full" for="cstar3" title="Meh - 3 stars"></label>
+            <input type="radio" id="cstar2half" name="dinnerrating" value="2.5" /><label class="half" for="cstar2half" title="Kinda bad - 2.5 stars"></label>
+            <input type="radio" id="cstar2" name="dinnerrating" value="2" /><label class = "full" for="cstar2" title="Kinda bad - 2 stars"></label>
+            <input type="radio" id="cstar1half" name="dinnerrating" value="1.5" /><label class="half" for="cstar1half" title="Meh - 1.5 stars"></label>
+            <input type="radio" id="cstar1" name="dinnerrating" value="1" /><label class = "full" for="cstar1" title="Sucks big time - 1 star"></label>
+            <input type="radio" id="cstarhalf" name="dinnerrating" value=".5" /><label class="half" for="cstarhalf" title="Sucks big time - 0.5 stars"></label>
+        </fieldset>
+    </div>
+    <div class="description">
+          <input type="text" id="dinnerText" placeholder="Breakfast for dinner..."> 
+    </div>
+    <p>
+    <div class="choose_file">
+        <a onclick="chooseFile()">Choose today's photos and videos</a>
+    </div>
+  
+    
+
+    <div>
+        <p>Milestone: <input type='text' id="Milestone" width=100% placeholder="For the memorybox..."><br>
+         Note: <input type='text' id="Note" width=100% placeholder="Something brief..."></p>
+     </div>
+    <p>
+        <button id="submitStory" type="button" onclick="submitForm()">Create Today's Story</button><br>
+    </p>
+
+</form>
+ 
+    </div>
+        
+
+<script type="text/javascript">
+function submitForm() {
+    
+  // grab user inputs from the form
+  var date = new Date().toString();
+
+  var bfastRating = $('#bfastRating').children('input:checked').val() || null;
+  var lunchRating = $('#lunchRating').children('input:checked').val() || null;
+  var dinnerRating = $('#dinnerRating').children('input:checked').val() || null;
+  var bfastText = $('#bfastText').val();
+  var lunchText = $('#lunchText').val();
+  var dinnerText = $('#dinnerText').val();
+  var Milestone = $('#Milestone').val();
+  var Note = $('#Note').val();
+  var dailyPhoto = window.image_url || null;
+  var username = window.response_name;
+
+
+  // create a section for  data in your db
+  var dailyReference = database.ref('daily');
+
+  var type = window.uploadType;
+  console.log(type);
+
+  var daily = 
+  {
+    date: date,
+    bfastRating: bfastRating,
+    lunchRating: lunchRating,
+    dinnerRating: dinnerRating,
+    bfastText: bfastText,
+    lunchText: lunchText,
+    dinnerText: dinnerText,
+    Milestone: Milestone,
+    Note: Note,
+    dailyPhoto: dailyPhoto,
+    Name: username,
+    type: type
+  };
+
+  dailyReference.push(daily);
+  window.location = "stories.html";
+
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>

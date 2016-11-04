@@ -1,0 +1,90 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!--all scripts in HEAD-->
+    <meta charset="utf-8">
+
+    <title>How's My Kid</title>
+    <!-- Firebase CDN -->
+        <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+        <script src="js/jquery-3.0.0.js"></script>
+
+  <!-- Filestack JS library for uploading photos -->
+        <script type="text/javascript" src="http://api.filestackapi.com/filestack.js"></script>
+
+    
+    <!-- linking in the CSS file -->
+    <link rel="stylesheet" href="home.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
+
+</head>
+
+<body>
+
+<script>
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAI8h1SgbrccNMTzCdDbz4JBxidnqCLB3E",
+    authDomain: "hows-my-kid.firebaseapp.com",
+    databaseURL: "https://hows-my-kid.firebaseio.com",
+    storageBucket: "hows-my-kid.appspot.com",
+    messagingSenderId: "694614334571"
+  };
+  firebase.initializeApp(config);
+
+//Connect to my Firebase application using reference URL
+var database = firebase.database();
+console.log('firebase database found and saved in variable');
+</script>
+
+
+
+
+<div class="card card-2">
+<p>
+Add your Child <br><br><br><br></p>
+First name <input type=text id='firstName' placeholder="Little"><br><br>
+Last name <input type=text id='lastName' placeholder="Sweetie"><br><br>
+Birthday <input type=date id='birthday' placeholder="2020"><br><br>
+<button id='addChildButton' onclick="addChild()"> Submit </button>
+</div>
+
+
+<script>
+//Collect upfront information
+
+function addChild() {
+   var birthday = $('#birthday').val()
+   var firstName = $('#firstName').val()
+   var lastName = $('#lastName').val()
+  
+
+  var child =
+    {
+      birthday: birthday,
+      firstName: firstName,
+      lastName: lastName
+    }
+
+ // create a section for  data in your db
+ var childReference = database.ref('children');
+
+  childReference.push(child);
+
+
+  window.location = "timeline.html";
+};
+</script>
+
+
+</body>
+</html>
+
+
+
+

@@ -55,6 +55,7 @@ function loadMilestones() {
         date: allResults[item].date,
         Milestone: allResults[item].Milestone,
         dailyPhoto: allResults[item].dailyPhoto,
+        type: (allResults[item].type == "video/mp4") ? true : false
       };
 
       var source = $("#milestone-template").html();
