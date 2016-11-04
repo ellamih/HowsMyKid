@@ -55,7 +55,7 @@ function loadEntry() {
 };
 
 loadEntry();
-console.log("loadData function is run!");
+console.log("loadEntry function is run!");
 
 
 

@@ -39,19 +39,14 @@
   firebase.initializeApp(config);
 
 //Connect to my Firebase application using reference URL
-
-
 var database = firebase.database();
 console.log('firebase database found and saved in variable');
-
 </script>
-
 
 
 <script>
 //upload a photo file using Filestack
 function chooseFile() {
-
   filepicker.setKey("A4uaNnoaGT0aLOYehDa6gz")
   filepicker.pick(
    {
@@ -71,15 +66,8 @@ function chooseFile() {
     //print errors to console
   }
 );
-
 };
-
-
-
 </script>
-
-
-
 
 <!--
   Below we include the Login Button social plugin. This button uses
@@ -91,8 +79,6 @@ function chooseFile() {
      <span> <a><button id='todobutton' type="button" onclick="location.href='todo.html'" style="float:right" >To Do List</button></a></span>
 
 </h1>
-
-
 
 <center >
 <div class="card card-1" style="font-family: 'Merriweather', serif;">
@@ -119,7 +105,7 @@ function chooseFile() {
     <div class="description">
           <input type="text" id="bfastText" placeholder="Say something..."> 
     </div>
-      
+    
 
 
       <p>Rate lunch: </p>
@@ -186,11 +172,6 @@ function chooseFile() {
 function greeting() {
   $('#greeting').append(", " + window.response_name + "!");
 }
-
-
-
-  
-
 
 // This is called with the results from FB.getLoginStatus().
 // Source of this code is https://developers.facebook.com/docs/facebook-login/web
