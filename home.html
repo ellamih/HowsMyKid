@@ -57,7 +57,7 @@ function chooseFile() {
   
    function(Blob){
     window.image_url = Blob.url;
-
+    window.uploadType = Blob.mimetype;
     console.log(Blob);
   },
   
@@ -300,7 +300,9 @@ function submitForm() {
   // create a section for  data in your db
   var dailyReference = database.ref('daily');
 
-
+  var type = window.uploadType;
+  console.log(type);
+    
   var daily = 
   {
     date: date,
@@ -313,7 +315,8 @@ function submitForm() {
     Milestone: Milestone,
     Note: Note,
     dailyPhoto: dailyPhoto,
-    Name: username
+    Name: username,
+    type: type
   };
 
   dailyReference.push(daily);

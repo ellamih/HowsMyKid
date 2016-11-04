@@ -38,16 +38,17 @@ function loadEntry() {
         bfastRating: allResults[item].bfastRating,
         lunchRating: allResults[item].lunchRating,
         dinnerRating: allResults[item].dinnerRating,
-        dailyEntryId: item
+        dailyEntryId: item,
+        type: allResults[item].type
       };
 
-      console.log(dailyEntry);
+ 
       var source = $("#story-template").html();
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
       $('.story').prepend(storyElement);
     } 
-    //console.log("storyElement created");
+    console.log(type);
     
 
   });

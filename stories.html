@@ -36,11 +36,17 @@
     <script id="story-template" type="text/x-handlebars-template">
         <li>
             <p style='font-size: 16px'>{{Milestone}}<p>
-            <img src="{{dailyPhoto}}" /><br>
+            {{#if Type == "video/mp4"}}
+                <video controls width="400" src="{{dailyPhoto}}" /><br>
+            {{else}}
+                <img src="{{dailyPhoto}}" /><br>
+            {{/if}}
+            <span>{{type}}</span>
             <span style="float:right">{{name}}</span>
             
             <span>{{Note}}</span><br>
             {{date}}<br>
+
             <div class="fb-comments" data-width="450" data-href="http://howsmykid.com/#{{date}}" data-numposts="5"></div>
             
             <div class="fb-like" data-href="http://howsmykid.com/#{{date}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
