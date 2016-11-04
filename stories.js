@@ -31,6 +31,7 @@ function loadEntry() {
 
       var dailyEntry = {
         date: allResults[item].date,
+        timestamp: (new Date(allResults[item].date).getTime()),
         Milestone: allResults[item].Milestone,
         Note: allResults[item].Note,
         name: allResults[item].Name,
@@ -39,7 +40,7 @@ function loadEntry() {
         lunchRating: allResults[item].lunchRating,
         dinnerRating: allResults[item].dinnerRating,
         dailyEntryId: item,
-        type: allResults[item].type
+        mediatype: (allResults[item].type == "video/mp4") ? true : false
       };
 
  
@@ -47,12 +48,8 @@ function loadEntry() {
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
       $('.story').prepend(storyElement);
-    } 
-    console.log(type);
-    
-
+    }     
   });
-
 };
 
 loadEntry();
