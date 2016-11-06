@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
 
+    <script src="/path/to/jquery.cookie.js"></script>
+
+
+
 </head>
 
 <body>
@@ -74,8 +78,9 @@ function addChild() {
  // create a section for  data in your db
  var childReference = database.ref('children');
 
-  childReference.push(child);
-
+// childReference.push(child);
+ // $.cookie('birthday','$('#birthday').val()');
+  console.log($.cookie('birthday'));
 
   window.location = "timeline.html";
 };
