@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans" type="text/css">
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css">
 
+
+    <script src="jquery.cookie.js"></script>
+
 </head>
 
 <body>
@@ -88,7 +91,7 @@
     <a href="timeline.html">Milestones</a>
     <a href="stories.html">Stories</a>
     <a href="todo.html">Todos</a>
-    <a href="childSettings.html">Settings (add child)</a>
+    <a href="childSettings.html">Settings</a>
   </div>
 </div>
 
@@ -201,9 +204,7 @@ function greeting() {
      });
   };
   
-
-
-  // Load the SDK asynchronously
+  // Load the SDK asynchronously --> need to load once per page
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -223,6 +224,9 @@ function greeting() {
 
       window.response_name = response.name;
       
+      //store login name in a cookie
+      
+      $.cookie('loginName',window.response_name);
        //invoke greeting
         greeting();
 

@@ -16,30 +16,33 @@
 
 
 //function that queries database for child's data
+var birthdayEpoch = {};
 
-/*function loadChild() {
+function loadChild() {
   database.ref('/children').on('value', function (results) {
-
+    //console.log(results);
+    
     var allResults = results.val();
+    
+    console.log(allResults);
 
-    for (var item in allResults) {
+    var Henry = allResults['-KVhkTz3gDkj5auuR71w'];
+    var birthday = Henry.birthday;
+  
+    birthday = birthday.replace(/-/g,',');
 
-      var childData = {
-        birthday: allResults[item].birthday,
-        firstName: allResults[item].firstName,
-        lastName: allResults[item].lastName
-      }
-    }      
-      var source = $("#name-template").html();
-      var template = Handlebars.compile(source);
-      $('#timeline').prepend(template(childData));
-    }); 
+    console.log(birthday);
 
-    }
+    birthdayEpoch = new Date(birthday).getTime();
+    console.log(birthdayEpoch);
+
+  });
+}
 
 loadChild();
 console.log("loadChild function is run!");
-*/
+
+var photoDateEpoch = {};
 
 //function that queries database for form data
 function loadMilestones() {
@@ -55,18 +58,66 @@ function loadMilestones() {
         date: allResults[item].date,
         Milestone: allResults[item].Milestone,
         dailyPhoto: allResults[item].dailyPhoto,
-        type: (allResults[item].type == "video/mp4") ? true : false
+        type: (allResults[item].type == "video/mp4") ? true : false,
+        ageMonths: 0
+      };
+
+      photoDateEpoch = new Date(dailyEntry.date).getTime();
+      //console.log(photoDateEpoch);
+
+      var age = photoDateEpoch - birthdayEpoch;
+      age = new Date(age);
+      age = age/(60*60*24*30)/1000
+      ageMonths = Math.round(age)
+      console.log("months: " + ageMonths);
+
+      var dailyEntry = {
+        date: allResults[item].date,
+        Milestone: allResults[item].Milestone,
+        dailyPhoto: allResults[item].dailyPhoto,
+        type: (allResults[item].type == "video/mp4") ? true : false,
+        ageMonths: ageMonths
       };
 
       var source = $("#milestone-template").html();
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
       $('.timeline').prepend(storyElement);
-    } 
     
+
+    } 
 });
 
 };
 
 loadMilestones();
 console.log("loadMilestones function is run!");
+
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function changeNav(t) {
+  if (t.checked) {
+        openNav();
+      } else {
+        closeNav();
+      }
+    }
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
+
+
+//load birthday from Firebase
+//load time photo was taken
+//subtract date photo was taken from birthday
+
+

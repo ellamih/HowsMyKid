@@ -10,8 +10,12 @@
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
     
-    <!-- Latest compiled and minified CSS -->
+
+    <!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" type="text/css">
+
+
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -21,7 +25,63 @@
     <script src="js/handlebars-v4.0.5.js"></script> 
 </head>
 
-<div class="container">
+<body>
+<!-- side panel--> 
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn">&times;</a>
+  <ol>
+    <h4><a href="http://www.cdc.gov/ncbddd/actearly/pdf/checklists/checklists_1yr.pdf">What Most Children Do at 12 months</a></h4>
+    <h5> Social/Emotional </h5><br>
+      <li> Is shy or nervous with strangers </li>
+      <li> Cries when mom or dad leaves </li> 
+      <li> Has favorite things and people </li>
+      <li> Shows fear in some situations </li>
+      <li> Hands you a book when he wants to hear a story </li>
+      <li> Repeats sounds or actions to get attention </li>
+      <li> Puts out arm or leg to help with dressing </li>
+      <li> Plays games such as “peek-a-boo” and “pat-a-cake” </li>
+
+    <h5> Language/Communication </h5><br>
+      <li> Uses simple gestures, like shaking head “no”
+      or waving “bye-bye” </li>
+      <li> Responds to simple spoken requests </li>
+      <li> Makes sounds with changes in tone (sounds more like speech) </li>
+      <li> Says “mama” and “dada” and exclamations like “uh-oh!” </li>
+      <li> Tries to say words you say </li>
+
+    <h5> Cognitive (learning, thinking, problem-solving) </h5><br>
+      <li> Explores things in different ways, like shaking,
+      banging, throwing </li>
+      <li> Finds hidden things easily </li>
+      <li> Looks at the right picture or thing when it’s named </li>
+      <li> Copies gestures </li>
+      <li> Starts to use things correctly; for example, drinks from
+      a cup, brushes hair </li>
+      <li> Bangs two things together </li>
+      <li> Puts things in a container, takes things out of a container </li>
+      <li> Lets things go without help </li>
+      <li> Pokes with index (pointer) finger </li>
+      <li> Follows simple directions like “pick up the toy” </li>
+  
+  <a href="http://www.cdc.gov/ncbddd/actearly/pdf/checklists/checklists_18mo.pdf">Learn about 18 months (CDC.gov)</a> 
+  </ol>
+</div>
+
+<!-- toggle element that opens the sidenav -->
+
+<li class="list-group-item">
+  <div> Learn more about this age from trusted information by the CDC</a> 
+  <div class="material-switch pull-right">
+      <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox" onclick="changeNav(this)"/>
+      <label for="someSwitchOptionInfo" class="label-info"></label>
+  </div>
+  </div>
+</li>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+
+
+<div id="main" class="container">
     <div class="page-header">
         <!--script id="name-template" type="text/x-handlebars-template"-->
         <h1 id="timeline">Milestone timeline </h1>
@@ -43,6 +103,7 @@
             {{else}}
                 <img src="{{dailyPhoto}}" width="30%" height="30%" /><br>
             {{/if}}
+            <span id="ageSpan"> {{ageMonths}} months</span>
             </div>
           </div>
         </li>
@@ -130,9 +191,12 @@
     </ul>
 </div>
 
-
 <!-- Main js file -->
 <script src="timeline.js"></script>
 
 
+
+
+
+</body>
 </html>
