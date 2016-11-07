@@ -1,8 +1,7 @@
 
 <!doctype html>
 <html lang="en">
-<head>
-   
+<head>  
 
      <!--Material design from http://materializecss.com/getting-started.html-->
           <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -44,47 +43,6 @@
 </h1>
 
 
-<style> /*for the dropdown only*/
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-}
-
-.dropdown {
-    position: relative;
-    float:  left;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #f1f1f1}
-
-.show {display:block;}
-</style>
-
 <div class="dropdown">
 <button onclick="myFunction()" class="dropbtn">Menu</button>
   <div id="myDropdown" class="dropdown-content">
@@ -116,11 +74,6 @@ window.onclick = function(event) {
     }
   }
 }
-</script>
-
-
-
-<script>
 
 function greeting() {
   $('#greeting').append(", " + window.response_name + "!");
@@ -129,11 +82,10 @@ function greeting() {
 // This is called with the results from FB.getLoginStatus().
 // Source of this code is https://developers.facebook.com/docs/facebook-login/web
   function statusChangeCallback(response) {
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
     } else if (response.status === 'not_authorized') {
@@ -141,8 +93,7 @@ function greeting() {
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
+      // The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
@@ -158,7 +109,7 @@ function greeting() {
   };
 
   window.fbAsyncInit = function() {
-    FB.Event.subscribe('auth.statusChange', statusChangeCallback);
+//    FB.Event.subscribe('auth.statusChange', statusChangeCallback);
 
     FB.init({
       appId      : '322512288126012',
@@ -166,45 +117,17 @@ function greeting() {
                           // the session
       xfbml      : true,  // parse social plugins on this page
       version    : 'v2.8', // use graph api version 2.5
-      status     : true, 
+     
     });
 
-    // Now that we've initialized the JavaScript SDK, we call 
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
-   
     
     FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-        // the user is logged in and has authenticated your
-        // app, and response.authResponse supplies
-        // the user's ID, a valid access token, a signed
-        // request, and the time the access token 
-        // and signed request each expire
-        var uid = response.authResponse.userID;
-        var accessToken = response.authResponse.accessToken;
-        //console.log(response);
-        //console.log(response.name);
-  
+    statusChangeCallback(response);
+  });
 
-      } else if (response.status === 'not_authorized') {
-        // the user is logged in to Facebook, 
-        // but has not authenticated your app
-      } else {
-        // the user isn't logged in to Facebook.
-      }
-     });
   };
   
-  // Load the SDK asynchronously --> need to load once per page
+  // Load the SDK asynchronously --> load once per page
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -219,8 +142,8 @@ function greeting() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      //document.getElementById('status').innerHTML =
-      //  'Thanks for logging in, ' + response.name + '!';
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
 
       window.response_name = response.name;
       
@@ -236,11 +159,8 @@ function greeting() {
 </script>
 
 
-
 <div>
-
 <div>
-
 <div class="card card-2">Track important details of each of your child's days.
   <br><a href="addStory.html"><img id="subphoto" src="dailyphoto.jpg" style="width: 300px; height: 214px; overflow: hidden"> </a>
 </div>
@@ -250,8 +170,6 @@ function greeting() {
 <div class="card card-2">Store to dos and key questions for the pediatrician.
     <br><a href="todo.html"><img id="subphoto" src="lotsToDo.jpg" height="214px"; width="300px"></a>
 </div>
-
-
 
  <fb:login-button data-size="large" data-show-faces="true" scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState()";>
 </fb:login-button>
