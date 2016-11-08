@@ -44,7 +44,7 @@
 
 
 <div class="dropdown">
-<button onclick="myFunction()" class="dropbtn">Menu</button>
+<button id="menuButton" onclick="myFunction()" class="dropbtn">Menu</button>
   <div id="myDropdown" class="dropdown-content">
     <a href="timeline.html">Milestones</a>
     <a href="stories.html">Stories</a>
@@ -161,14 +161,29 @@ if (response.status === 'connected') {
 
 <div>
 <div>
-<div class="card card-2">Track important details of each of your child's days.
-  <br><a href="addStory.html"><img id="subphoto" src="dailyphoto.jpg" style="width: 300px; height: 214px; overflow: hidden"> </a>
+<div class="card card-2">Track your child's days.
+  <br><img id="subphoto" src="dailyphoto.jpg" height="214px"; width="300px">
+  <div class="card__action-bar">
+    <button class="card__button"><a href="addStory.html">CREATE STORY</a></button>
+    <button class="card__button">LEARN MORE</button>
+  </div>
 </div>
-<div class="card card-2">See an overview of your child's key milestones.
-    <br><a href="timeline.html"><img id="subphoto" src="flyingchild.jpg" height="214px"; width="300px"></a>
+
+<div class="card card-2">See key milestones.
+    <br><img id="subphoto" src="flyingchild.jpg" height="214px"; width="300px">
+  <div class="card__action-bar">
+    <button class="card__button"><a href='timeline.html'>SEE TIMELINE</a></button>
+    <button class="card__button">LEARN MORE</button>
+  </div>
+
 </div>
-<div class="card card-2">Store to dos and key questions for the pediatrician.
-    <br><a href="todo.html"><img id="subphoto" src="lotsToDo.jpg" height="214px"; width="300px"></a>
+<div class="card card-2">Store to dos and questions.
+    <br><img id="subphoto" src="lotsToDo.jpg" height="214px"; width="300px">
+    <div class="card__action-bar">
+    <button class="card__button"><a href="todo.html">CREATE TODO</a></button>
+    <button class="card__button">LEARN MORE</button>
+    </div>
+
 </div>
 
  <fb:login-button data-size="large" data-show-faces="true" scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState()";>
