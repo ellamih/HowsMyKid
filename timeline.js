@@ -71,6 +71,15 @@ function loadMilestones() {
       ageMonths = Math.round(age)
       console.log("months: " + ageMonths);
 
+      //Helper
+      Handlebars.registerHelper("everyOther", function (index, amount, scope) {
+       if ( ++index % amount) 
+             return scope.inverse(this);
+          else 
+             return scope.fn(this);
+          });
+
+      //Array
       var dailyEntry = {
         date: allResults[item].date,
         Milestone: allResults[item].Milestone,
@@ -79,6 +88,8 @@ function loadMilestones() {
         ageMonths: ageMonths
       };
 
+      
+      // Compile our template into function
       var source = $("#milestone-template").html();
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
