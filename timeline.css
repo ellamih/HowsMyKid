@@ -14,10 +14,19 @@ img {
     font-family: 'merriweather', sans-serif; 
 
 }
+.text-muted {
+    padding-left: 10px;
+
+}
+.timeline-heading {
+    float: right;
+    width: 50%;
+
+}
 
 .timeline {
     list-style: none;
-    padding: 20px 0 20px;
+    padding: 0px;
     position: relative;
 }
 
@@ -63,7 +72,7 @@ img {
             float: left;
             border: 1px solid #d4d4d4;
             border-radius: 2px;
-            padding: 20px;
+            padding: 0px;
             position: relative;
             -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
             box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
@@ -151,7 +160,8 @@ img {
 }
 
 .timeline-title {
-    margin-top: 0;
+    padding-left: 10px;
+    margin-top: 10px;
     color: inherit;
 }
 

@@ -161,14 +161,21 @@ function chooseFile() {
     window.image_url = Blob.url;
     window.uploadType = Blob.mimetype;
     console.log(Blob);
+    //create image, update it with the URL
+    $('.choose_file').append('<img style="width: 75px" src=' + Blob.url + '>');
+    
   },
-  
+
+
    function(FPError){
     console.log(FPError.toString()); 
     //print errors to console
   }
 );
 };
+
+
+
 
 function submitForm() {
     

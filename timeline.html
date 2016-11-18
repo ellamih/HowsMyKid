@@ -89,105 +89,30 @@
     </div>
     <ul class="timeline">
         <script id="milestone-template" type="text/x-handlebars-template">
-
-         {{#each dailyEntry}}
-          {{#everyOther @index 2}} 
-            <li>Testing, testing
-          {{else}}
-            <li class="timeline-inverted">
-          {{/everyOther}}
-            <div class="timeline-badge"><i class="glyphicon"></i></div>
-              <div class="timeline-panel">
-              <div class="timeline-heading">
-              <h4 class="timeline-title">{{Milestone}}</h4>
+        {{#if direction}}
+        <li>
+        {{else}}
+        <li class="timeline-inverted">
+        {{/if}}
+          <div class="timeline-badge"><i class="glyphicon"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{Milestone}} ({{ageMonths}} months)</h4>
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{date}}</small></p>
             </div>
-           
-              <div class="timeline-body">
-            {{#if type}}
+            <div class="timeline-body">
+                {{#if type}}
                 <video controls width="50%" height="50%" src="{{dailyPhoto}}/convert?rotate=exif" /><br>
             {{else}}
-                <img src="{{dailyPhoto}}/convert?rotate=exif" width="30%" height="30%" /><br>
+                <img src="{{dailyPhoto}}/convert?rotate=exif" width="50%" height="50%" /><br>
             {{/if}}
-            <span id="ageSpan"> {{ageMonths}} months</span>
             
             </div>
           </div>
         </li>
-        {{/each}}        
+        
         </script>
 
-        <li class="timeline-inverted">
-          <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Timeline Inverted</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Timeline panel</p>
-              <p>Another panel</p>
-            </div>
-          </div>
-        </li>
-
-
-        <li class="timeline-inverted">
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Timeline inverted</p>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds.</p>
-              <hr>
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                  <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds.</p>
-            </div>
-          </div>
-        </li>
-        <li class="timeline-inverted">
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
-          <div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-            </div>
-            <div class="timeline-body">
-              <p>Mussum ipsum cacilds.</p>
-            </div>
-          </div>
-        </li>
     </ul>
 </div>
 

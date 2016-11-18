@@ -50,19 +50,13 @@ function loadMilestones() {
 
     var allResults = results.val();
 
+
+    var i = 0;
     //loop through the data coming from the database call
     for (var item in allResults) {
       //create an object literal with the data we'll pass to Handlebars
 
-      var dailyEntry = {
-        date: allResults[item].date,
-        Milestone: allResults[item].Milestone,
-        dailyPhoto: allResults[item].dailyPhoto,
-        type: (allResults[item].type == "video/mp4") ? true : false,
-        ageMonths: 0
-      };
-
-      photoDateEpoch = new Date(dailyEntry.date).getTime();
+      photoDateEpoch = new Date(allResults[item].date).getTime();
       //console.log(photoDateEpoch);
 
       var age = photoDateEpoch - birthdayEpoch;
@@ -71,35 +65,26 @@ function loadMilestones() {
       ageMonths = Math.round(age)
       console.log("months: " + ageMonths);
 
-      //Helper
-      Handlebars.registerHelper("everyOther", function (index, amount, scope) {
-       if ( ++index % amount) 
-             return scope.inverse(this);
-          else 
-             return scope.fn(this);
-          });
-
-      //Array
       var dailyEntry = {
         date: allResults[item].date,
         Milestone: allResults[item].Milestone,
         dailyPhoto: allResults[item].dailyPhoto,
         type: (allResults[item].type == "video/mp4") ? true : false,
-        ageMonths: ageMonths
+        ageMonths: ageMonths,
+        direction: (i % 2 == 0) ? true : false
       };
 
-      
-      // Compile our template into function
       var source = $("#milestone-template").html();
       var template = Handlebars.compile(source);
       var storyElement = template(dailyEntry);
       $('.timeline').prepend(storyElement);
     
-
+      i++;
     } 
 });
 
 };
+
 
 loadMilestones();
 console.log("loadMilestones function is run!");
